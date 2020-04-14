@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A&H Capstone Fest 2020</title>
+    <script src="js/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="header">
+        <input type="text" v-model="search" placeholder="Search keyword.."/>
+      </div>
+      <div class="container">
+        <div v-for="tile in filteredTiles">
+          <h3>{{ tile.title }}</h3>
+          <h4>{{ tile.author }}</h4>
+          <p>{{ tile.description }}</p>
+          <a>{{ tile.major }}</a>
+        </div>
+      </div>
+      <div class="footer">
+        <ul>
+          <li v-for="major in majors">
+            <input type="radio" :id="major.name" :value="major.name" v-model="tag">
+            <label>{{ major.name }}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="js/tabletop.js"></script>
+    <script>
+
+      class Tile {
+        constructor(title, author, description, major) {
+          this.title = title;
+          this.author = author;
+          this.description = description;
+          this.major = major;
+        }
+      }
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          search: '',
+          tag: '',
+          tiles: [new Tile('loading capstones...','','','')],
+          majors: [{name: 'loading majors...'}]
+        },
+        computed: {
+          taggedTiles: function() {
+            return this.tiles.filter(tile => { return tile.major.toLowerCase().includes(this.tag.toLowerCase());});
+          },
+          filteredTiles: function() {
+            console.log("triggered");
+            return this.taggedTiles.filter(tile => {
+                //return tile.major.toLowerCase().includes(this.tag.toLowerCase())
+              return tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
+                tile.author.toLowerCase().includes(this.search.toLowerCase()) ||
+                tile.description.toLowerCase().includes(this.search.toLowerCase()) ||
+                tile.major.toLowerCase().includes(this.search.toLowerCase())
+            });
+          }
+        }
+      })
+
+      function init() {
+        Tabletop.init( {
+          key: '',
+          simpleSheet: true }
+        ).then(function(data, tabletop) {
+          console.log(data);
+          let majors = [];
+          let tiles = [];
+          for (let i = 0; i < data.length; i++) {
+            tiles.push(new Tile(data[i]['Capstone Title for Website (100 characters max)'],
+              data[i]['First Name']+' '+data[i]['Last Name'],
+              data[i]['Capstone Description for Website (200 characters max)'],
+              data[i]['Major(s)']));
+            if (!majors.some(major => major.name === data[i]['Major(s)'])) {
+              majors.push({ name: data[i]['Major(s)'] });
+            }
+          }
+          app.tiles = tiles;
+          app.majors = majors;
+        })
+      }
+      window.addEventListener('DOMContentLoaded', init)
+
+    </script>
+  </body>
+</html>
