@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>A&H Capstone Fest 2020</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Raleway:wght@500;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/vue.js"></script>
   </head>
   <body>
@@ -10,11 +12,11 @@
         <input type="text" v-model="search" placeholder="Search keyword.."/>
       </div>
       <div class="container">
-        <div v-for="tile in filteredTiles">
+        <div class="tile" v-for="tile in filteredTiles">
           <h3>{{ tile.title }}</h3>
           <h4>{{ tile.author }}</h4>
           <p>{{ tile.description }}</p>
-          <a>{{ tile.major }}</a>
+          <a>X {{ tile.major }}</a>
         </div>
       </div>
       <div class="footer">
@@ -53,7 +55,6 @@
           filteredTiles: function() {
             console.log("triggered");
             return this.taggedTiles.filter(tile => {
-                //return tile.major.toLowerCase().includes(this.tag.toLowerCase())
               return tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
                 tile.author.toLowerCase().includes(this.search.toLowerCase()) ||
                 tile.description.toLowerCase().includes(this.search.toLowerCase()) ||
