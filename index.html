@@ -4,11 +4,11 @@
     <title>A&H Capstone Fest 2020</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Raleway:wght@500;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="js/vue.js"></script>
     <meta charset="utf-8">
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+    <script src="js/vue.js"></script>
   </head>
   <body>
     <div id="app">
@@ -17,6 +17,7 @@
         <img class="nyuad-logo" src="assets/nyuad-logo.svg" alt="NYU Abu Dhabi">
         <img class="capstone-fest-logo" src="assets/capstone-fest-logo.svg" alt="Arts & Humanities Capstone Fest 2020">
         <h1>May 6—7, 2020. <a>Live events</a> from 8-11 PM</h1>
+        <h2><span>A&H Capstone Fest 2020.</span> <a>Live events</a> from 8-11 PM</h2>
       </div>
       <div class="container">
         <div class="tile" v-for="tile in filteredTiles">
@@ -43,17 +44,20 @@
             function(callback){ window.setTimeout(callback, 1000/60)};
 
       function loop() {
-        document.getElementsByClassName("capstone-fest-logo")[0].style.opacity = (window.innerWidth*.2-window.scrollY)/window.innerWidth/.2;
-        if (window.scrollY > window.innerWidth*.43) {
-          document.getElementsByTagName("h1")[0].style.fontSize = 3+"vw";
-          document.getElementsByTagName("h1")[0].className = "sticky";
-          document.getElementsByClassName("container")[0].className = "container scrolled";
-         // window.scrollTo(0,0);
+        let largeHeading = document.getElementsByTagName("h1")[0];
+        let smallHeading = document.getElementsByTagName("h2")[0];
+        let festLogo = document.getElementsByClassName("capstone-fest-logo")[0];
+        if (window.scrollY > window.innerWidth*.3) {
+          smallHeading.style.opacity = (window.scrollY-window.innerWidth*.3)/window.innerWidth/.3;
+          largeHeading.className = "hidden";
+          smallHeading.className = "";
         } else {
-          document.getElementsByTagName("h1")[0].style.fontSize = (5.5-window.scrollY/window.innerWidth/.43*2.5)+"vw";
-          document.getElementsByTagName("h1")[0].className = "";
+          festLogo.style.opacity = (window.innerWidth*.3-window.scrollY)/window.innerWidth/.3;
+          largeHeading.className = "";
+          smallHeading.className = "hidden";
+          largeHeading.style.opacity = (window.innerWidth*.3-window.scrollY)/window.innerWidth/.3;
         }
-          scroll(loop);
+        scroll(loop);
       }
 
       loop();

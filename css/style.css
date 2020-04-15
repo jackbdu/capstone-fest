@@ -42,16 +42,33 @@ body {
   font-family: "Open Sans Condensed", sans-serif;
   font-weight: 700;
   font-size: 5.5vw;
-  text-align: center;
+  text-align: right;
   position: absolute;
   top: 46vw;
-  left: 50%;
-  transform: translate(-50%, 0);
+  right: 4vw;
+  white-space: nowrap;
 }
 
-.header h1.sticky {
+.header h2 {
+  width: 100%;
+  color: #DA4B39;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 3vw;
+  text-align: right;
   position: fixed;
   top: 3vw;
+  right: 4vw;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+h1.hidden, h2.hidden {
+  display: none;
+}
+
+.header h2 span {
+  color: #000;
 }
 
 .header .gradient {
@@ -144,7 +161,6 @@ body {
 .footer li {
   list-style-type: none;
 }
-/*
 @media only screen and (max-width: 1600px) {
   .container .tile {
     flex: 0 0 33.3333333%;
@@ -254,4 +270,3 @@ body {
   }
 
 } 
-*/
