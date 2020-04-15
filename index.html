@@ -13,6 +13,7 @@
   <body>
     <div id="app">
       <div class="header">
+        <div class="gradient"></div>
         <img class="nyuad-logo" src="assets/nyuad-logo.svg" alt="NYU Abu Dhabi">
         <img class="capstone-fest-logo" src="assets/capstone-fest-logo.svg" alt="Arts & Humanities Capstone Fest 2020">
         <h1>May 6—7, 2020. <a>Live events</a> from 8-11 PM</h1>
@@ -37,6 +38,28 @@
     </div>
     <script src="js/tabletop.js"></script>
     <script>
+
+      var scroll = window.requestAnimationFrame ||
+            function(callback){ window.setTimeout(callback, 1000/60)};
+
+      function loop() {
+        document.getElementsByClassName("capstone-fest-logo")[0].style.opacity = (window.innerWidth*.2-window.scrollY)/window.innerWidth/.2;
+        if (window.scrollY > window.innerWidth*.43) {
+          document.getElementsByTagName("h1")[0].style.fontSize = 3+"vw";
+          document.getElementsByTagName("h1")[0].className = "sticky";
+          document.getElementsByClassName("container")[0].className = "container scrolled";
+         // window.scrollTo(0,0);
+        } else {
+          document.getElementsByTagName("h1")[0].style.fontSize = (5.5-window.scrollY/window.innerWidth/.43*2.5)+"vw";
+          document.getElementsByTagName("h1")[0].className = "";
+        }
+          scroll(loop);
+      }
+
+      loop();
+
+      window.onload = function() {
+      }
 
       class Tile {
         constructor(title, author, description, major) {
@@ -90,6 +113,7 @@
           }
           app.tiles = tiles;
           app.majors = majors;
+          window.scrollTo(0,0);
         })
       }
       window.addEventListener('DOMContentLoaded', init)
