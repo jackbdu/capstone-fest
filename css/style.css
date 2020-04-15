@@ -21,14 +21,44 @@ body {
 .header {
   width: 100%;
   height: 20vw;
+  /*
   position: fixed;
   top: 0;
   left: 0;
-  background: linear-gradient(#fff, #fff 25%, #fff0);
+  */
+  background: linear-gradient(#fff, #fff 15%, #fff0);
+}
+
+.header .nyuad-logo {
+  height: 5vw;
+  position: fixed;
+  top: 3vw;
+  left: 4.5vw;
+}
+
+.header .capstone-fest-logo {
+  width: 91vw;
+  position: absolute;
+  top: -13vw;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.header h1 {
+  width: 100%;
+  color: #DA4B39;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 5.5vw;
+  text-align: center;
+  position: absolute;
+  top: 46vw;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .container {
-  padding: 10vw 3vw 10vw 3vw;
+  padding: 58vw 3vw 10vw 3vw;
   flex: 1;
   display: flex;
   flex-wrap: wrap;
@@ -103,7 +133,7 @@ body {
 .footer li {
   list-style-type: none;
 }
-
+/*
 @media only screen and (max-width: 1600px) {
   .container .tile {
     flex: 0 0 33.3333333%;
@@ -213,3 +243,4 @@ body {
   }
 
 } 
+*/
