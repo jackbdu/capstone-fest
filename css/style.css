@@ -165,6 +165,7 @@ h1.hidden, h2.hidden {
   font-weight: 500;
   font-size: 0.6vw;
   color: #9CC5CA;
+  text-transform: uppercase;
 }
 
 .footer {

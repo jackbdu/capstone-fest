@@ -28,7 +28,7 @@
           <h3>{{ tile.title }}</h3>
           <h4>{{ tile.author }}</h4>
           <p>{{ tile.description }}</p>
-          <a>X {{ tile.major }}</a>
+          <a href="#">X {{ tile.major }}</a>
         </div>
       </div>
       <div class="footer">
@@ -50,7 +50,7 @@
         let smallHeading = document.getElementsByTagName("h2")[0];
         let festLogo = document.getElementsByClassName("capstone-fest-logo")[0];
         if (window.scrollY > window.innerWidth*.3) {
-          smallHeading.style.opacity = (window.scrollY-window.innerWidth*.3)/window.innerWidth/.3;
+          smallHeading.style.opacity = 2*(window.scrollY-window.innerWidth*.3)/window.innerWidth/.3;
           largeHeading.className = "hidden";
           smallHeading.className = "";
         } else {
