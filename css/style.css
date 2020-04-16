@@ -4,17 +4,11 @@ body, ul, li, h1, h2, h3, h4, button {
   border: 0;
 }
 
-html {
-  height: 100%;
-}
-
 body {
-  height: 100%;
   background: #9DC6CA;
 }
 
 #app {
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -223,6 +217,7 @@ h1.hidden, h2.hidden {
   font-family: "Open Sans Condensed", sans-serif;
   font-weight: 700;
   font-size: 1.1vw;
+  flex: 1;
 }
 
 .footer ul {
