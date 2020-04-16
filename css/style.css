@@ -37,6 +37,10 @@ body {
   transform: translate(-50%, 0);
 }
 
+.header .capstone-fest-logo.hidden {
+  display: none;
+}
+
 .header h1 {
   width: 100%;
   color: #DA4B39;
@@ -62,6 +66,23 @@ body {
   right: 10vw;
   white-space: nowrap;
   opacity: 0;
+}
+
+h1.hidden, h2.hidden {
+  display: none;
+}
+
+.header h2 span {
+  color: #000;
+}
+
+.header a {
+  color: #DA4B39;
+  text-decoration: underline;
+}
+
+.header a:hover {
+  cursor: pointer;
 }
 
 .header .search {
@@ -114,14 +135,6 @@ body {
   opacity: 0;
 }
 
-h1.hidden, h2.hidden {
-  display: none;
-}
-
-.header h2 span {
-  color: #000;
-}
-
 .header .gradient {
   width: 100%;
   height: 20vw;
@@ -170,6 +183,10 @@ h1.hidden, h2.hidden {
   font-size: 1vw;
 }
 
+.container .tile h3:hover {
+  cursor: pointer;
+}
+
 .container .tile h4 {
   color: #fff;
   font-family: "Open Sans Condensed", sans-serif;
@@ -194,6 +211,9 @@ h1.hidden, h2.hidden {
   text-transform: uppercase;
 }
 
+.container .tile a:hover {
+  cursor: pointer;
+}
 .footer {
   width: 100%;
   box-sizing: border-box;
@@ -220,6 +240,11 @@ h1.hidden, h2.hidden {
 
 .footer li a {
   color: #DD4C37;
+  text-decoration: underline;
+}
+
+.footer li a:hover {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1600px) {

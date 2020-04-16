@@ -15,9 +15,9 @@
       <div class="header">
         <div class="gradient"></div>
         <img class="capstone-fest-logo" src="assets/capstone-fest-logo.svg" alt="Arts & Humanities Capstone Fest 2020">
-        <h1>May 6—7, 2020. <a>Live events</a> from 8-11 PM</h1>
+        <h1>May 6—7, 2020. <a v-on:click="filterTilesByTag('live')">Live events</a> from 8-11 PM</h1>
         <img class="nyuad-logo" src="assets/nyuad-logo.svg" alt="NYU Abu Dhabi">
-        <h2><span>A&H Capstone Fest 2020.</span> <a>Live events</a> from 8-11 PM</h2>
+        <h2><span>A&H Capstone Fest 2020.</span> <a v-on:click="filterTilesByTag('live')">Live events</a> from 8-11 PM</h2>
         <div class="search">
           <transition name="fade">
             <div class="search-input-container" v-if="searchInputVisible">
@@ -29,16 +29,16 @@
       </div>
       <div class="container">
         <div class="tile" v-for="tile in filteredTiles">
-          <h3>{{ tile.title }}</h3>
+          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
           <h4>{{ tile.author }}</h4>
           <p>{{ tile.description }}</p>
-          <a href="#">X {{ tile.major }}</a>
+          <a v-on:click="filterTilesByTag(tile.major)">X {{ tile.major }}</a>
         </div>
       </div>
       <div class="footer">
         <ul>
           <li v-for="major in majors">
-            <a href="#">{{ major.name }}</a>
+            <a v-on:click="filterTilesByTag(major.name)">{{ major.name }}</a>
           </li>
         </ul>
       </div>
@@ -56,10 +56,12 @@
         let festLogo = document.getElementsByClassName("capstone-fest-logo")[0];
         if (window.scrollY > window.innerWidth*.3) {
           smallHeading.style.opacity = 2*(window.scrollY-window.innerWidth*.3)/window.innerWidth/.3;
+          festLogo.className = "capstone-fest-logo hidden";
           largeHeading.className = "hidden";
           smallHeading.className = "";
         } else {
           festLogo.style.opacity = (window.innerWidth*.3-window.scrollY)/window.innerWidth/.3;
+          festLogo.className = "capstone-fest-logo";
           largeHeading.className = "";
           smallHeading.className = "hidden";
           largeHeading.style.opacity = (window.innerWidth*.3-window.scrollY)/window.innerWidth/.3;
@@ -74,11 +76,12 @@
       }
 
       class Tile {
-        constructor(title, author, description, major) {
+        constructor(title, author, description, major, link) {
           this.title = title;
           this.author = author;
           this.description = description;
           this.major = major;
+          this.link = link;
         }
       }
 
@@ -87,17 +90,23 @@
         data: {
           search: '',
           searchInputVisible: false,
-          tag: '',
-          tiles: [new Tile('loading capstones...','','','')],
+          tiles: [],
+          tilesFilteredByTag: [new Tile('loading capstones...','','','')],
           majors: [{name: 'loading majors...'}]
         },
-        computed: {
-          taggedTiles: function() {
-            return this.tiles.filter(tile => { return tile.major.toLowerCase().includes(this.tag.toLowerCase());});
+        methods: {
+          filterTilesByTag: function(tag) {
+            window.scrollTo(0, window.innerWidth*.48);
+            this.tilesFilteredByTag = this.tiles.filter(tile => { return tile.major.toLowerCase().includes(tag.toLowerCase());});
           },
+          openLink: function(link) {
+            window.open(link, '_blank');
+          }
+        },
+        computed: {
           filteredTiles: function() {
             window.scrollTo(0, window.innerWidth*.48);
-            return this.taggedTiles.filter(tile => {
+            return this.tilesFilteredByTag.filter(tile => {
               return tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
                 tile.author.toLowerCase().includes(this.search.toLowerCase()) ||
                 tile.description.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -119,12 +128,14 @@
             tiles.push(new Tile(data[i]['Capstone Title for Website (100 characters max)'],
               data[i]['First Name']+' '+data[i]['Last Name'],
               data[i]['Capstone Description for Website (200 characters max)'],
-              data[i]['Major(s)']));
+              data[i]['Major(s)'],
+              data[i]['Link']));
             if (!majors.some(major => major.name === data[i]['Major(s)'])) {
               majors.push({ name: data[i]['Major(s)'] });
             }
           }
           app.tiles = tiles;
+          app.tilesFilteredByTag = tiles;
           app.majors = majors;
           window.scrollTo(0,0);
         })
