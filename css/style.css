@@ -1,6 +1,7 @@
-body, ul, li, h1, h2, h3, h4 {
+body, ul, li, h1, h2, h3, h4, button {
   margin: 0;
   padding: 0;
+  border: 0;
 }
 
 html {
@@ -22,7 +23,7 @@ body {
 }
 
 .header .nyuad-logo {
-  height: 5vw;
+  height: 4vw;
   position: fixed;
   top: 3vw;
   left: 4.5vw;
@@ -58,9 +59,33 @@ body {
   text-align: right;
   position: fixed;
   top: 3vw;
-  right: 4vw;
+  right: 10vw;
   white-space: nowrap;
   opacity: 0;
+}
+
+.header .search {
+  position: fixed;
+  top: 3.5vw;
+  right: 4.5vw;
+  display: flex;
+  align-items: center;
+}
+
+.header .search button {
+  width: 3vw;
+  height: 3vw;
+  background: url(../assets/search-icon.svg);
+}
+
+.header .search input {
+  width: 10vw;
+  height: 2vw;
+  box-sizing: border-box;
+  margin-right: 1vw;
+  padding: 0.5vw;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
 }
 
 h1.hidden, h2.hidden {
@@ -87,11 +112,6 @@ h1.hidden, h2.hidden {
   flex-wrap: wrap;
   align-content: flex-start;
 }
-/*
-.container.scrolled {
-  padding-top: 15vw;
-}
-*/
 
 .container .tile {
   display: flex;
@@ -161,6 +181,11 @@ h1.hidden, h2.hidden {
 .footer li {
   list-style-type: none;
 }
+
+.footer li a {
+  color: #DD4C37;
+}
+
 @media only screen and (max-width: 1600px) {
   .container .tile {
     flex: 0 0 33.3333333%;
