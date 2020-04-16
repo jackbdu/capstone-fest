@@ -19,8 +19,12 @@
         <img class="nyuad-logo" src="assets/nyuad-logo.svg" alt="NYU Abu Dhabi">
         <h2><span>A&H Capstone Fest 2020.</span> <a>Live events</a> from 8-11 PM</h2>
         <div class="search">
-          <input type="text" v-model="search" placeholder="Search keyword.."/>
-          <button></button>
+          <transition name="fade">
+            <div class="search-input-container" v-if="searchInputVisible">
+              <input type="text" v-model="search" placeholder="Search keyword..."/>
+            </div>
+          </transition>
+          <button v-on:click="searchInputVisible = !searchInputVisible" id="search-button"></button>
         </div>
       </div>
       <div class="container">
@@ -42,6 +46,7 @@
     <script src="js/tabletop.js"></script>
     <script>
 
+      // scrolling animation
       var scroll = window.requestAnimationFrame ||
             function(callback){ window.setTimeout(callback, 1000/60)};
 
@@ -64,6 +69,7 @@
 
       loop();
 
+
       window.onload = function() {
       }
 
@@ -80,6 +86,7 @@
         el: '#app',
         data: {
           search: '',
+          searchInputVisible: false,
           tag: '',
           tiles: [new Tile('loading capstones...','','','')],
           majors: [{name: 'loading majors...'}]
@@ -89,7 +96,7 @@
             return this.tiles.filter(tile => { return tile.major.toLowerCase().includes(this.tag.toLowerCase());});
           },
           filteredTiles: function() {
-            window.scrollTo(0, 0);
+            window.scrollTo(0, window.innerWidth*.48);
             return this.taggedTiles.filter(tile => {
               return tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
                 tile.author.toLowerCase().includes(this.search.toLowerCase()) ||

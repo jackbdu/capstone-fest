@@ -66,8 +66,8 @@ body {
 
 .header .search {
   position: fixed;
-  top: 3.5vw;
-  right: 4.5vw;
+  top: 2.5vw;
+  right: 3.5vw;
   display: flex;
   align-items: center;
 }
@@ -75,17 +75,43 @@ body {
 .header .search button {
   width: 3vw;
   height: 3vw;
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
   background: url(../assets/search-icon.svg);
 }
 
-.header .search input {
-  width: 10vw;
+.header .search button:hover {
+  cursor: pointer;
+}
+
+.header .search button:focus {
+  outline: none;
+}
+
+.header .search .search-input-container {
+  display: block;
+  padding: 1.5vw 4vw 1.5vw 1.5vw;
+  background: #9DC6CA;
+}
+
+.header .search .search-input-container input {
+  width: 15vw;
   height: 2vw;
   box-sizing: border-box;
   margin-right: 1vw;
   padding: 0.5vw;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
+  font-size: 1vw;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 h1.hidden, h2.hidden {
