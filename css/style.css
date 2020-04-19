@@ -4,13 +4,19 @@ body, ul, li, h1, h2, h3, h4, button {
   border: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background: #9DC6CA;
+  height: 100%;
 }
 
 #app {
   display: flex;
   flex-direction: column;
+  min-height: 100%;
 }
 
 .header {
@@ -207,7 +213,7 @@ h1.hidden, h2.hidden {
   font-size: 0.6vw;
   color: #9CC5CA;
   text-transform: uppercase;
-  padding-right: 1vw;
+  margin-right: 1vw;
 }
 
 .container .tile a:hover {
@@ -223,7 +229,6 @@ h1.hidden, h2.hidden {
   font-family: "Open Sans Condensed", sans-serif;
   font-weight: 700;
   font-size: 1.1vw;
-  flex: 1;
 }
 
 .footer ul {
