@@ -31,7 +31,7 @@
         <div class="tile video" v-for="tile in filteredTiles" v-if="tile.type === 'video'">
           <h3>{{ tile.title }}</h3>
           <video controls>
-            <source src="media/a-message-from-the-dean.mp4" type="video/mp4">
+            <source v-bind:src="tile.link" type="video/mp4">
           Your browser does not support the video tag.
           </video>
         </div>
@@ -216,8 +216,8 @@
               videoData[i]['Title'],
               '',
               videoData[i]['Description'],
-              videoData[i]['Link'],
-              '',
+              videoData[i]['Video Link'],
+              videoData[i]['Cover Link'],
               videoData[i]['Tags'] ? videoData[i]['Tags'].split(', ') : []));
           }
 
