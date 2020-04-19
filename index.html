@@ -76,12 +76,14 @@
       }
 
       class Tile {
-        constructor(title, author, description, major, link) {
+        constructor(type, title, subtitle, description, link, image, tags) {
+          this.type = type;
           this.title = title;
-          this.author = author;
+          this.subtitle = subtitle;
           this.description = description;
-          this.major = major;
           this.link = link;
+          this.image = image;
+          this.tags = tags;
         }
       }
 
@@ -97,7 +99,7 @@
         methods: {
           filterTilesByTag: function(tag) {
             window.scrollTo(0, window.innerWidth*.48);
-            this.tilesFilteredByTag = this.tiles.filter(tile => { return tile.major.toLowerCase().includes(tag.toLowerCase());});
+            this.tilesFilteredByTag = this.tiles.filter(tile => { return tile.tags[0].toLowerCase().includes(tag.toLowerCase());});
           },
           openLink: function(link) {
             window.open(link, '_blank');
@@ -105,12 +107,13 @@
         },
         computed: {
           filteredTiles: function() {
+            console.log(this.tilesFilteredByTag);
             window.scrollTo(0, window.innerWidth*.48);
             return this.tilesFilteredByTag.filter(tile => {
               return tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
-                tile.author.toLowerCase().includes(this.search.toLowerCase()) ||
+                tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
                 tile.description.toLowerCase().includes(this.search.toLowerCase()) ||
-                tile.major.toLowerCase().includes(this.search.toLowerCase())
+                tile.tags[0].toLowerCase().includes(this.search.toLowerCase())
             });
           }
         }
@@ -127,13 +130,15 @@
           let majors = [];
           let tiles = [];
           for (let i = 0; i < projectsData.length; i++) {
-            tiles.push(new Tile(projectsData[i]['Capstone Title for Website (100 characters max)'],
+            tiles.push(new Tile('project',
+              projectsData[i]['Title'],
               projectsData[i]['Preferred Name'] ? projectsData[i]['Preferred Name'] : projectsData[i]['First Name']+' '+projectsData[i]['Last Name'],
-              projectsData[i]['Capstone Description for Website (200 characters max)'],
-              projectsData[i]['Major(s)'],
-              projectsData[i]['Link']));
-            if (!majors.some(major => major.name === projectsData[i]['Major(s)'])) {
-              majors.push({ name: projectsData[i]['Major(s)'] });
+              projectsData[i]['Description'],
+              projectsData[i]['Link'],
+              projectsData[i]['Image Link'],
+              [projectsData[i]['Major']]));
+            if (!majors.some(major => major.name === projectsData[i]['Major'])) {
+              majors.push({ name: projectsData[i]['Major'] });
             }
           }
           app.tiles = tiles;
