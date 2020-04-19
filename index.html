@@ -32,7 +32,7 @@
           <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
           <h4>{{ tile.author }}</h4>
           <p>{{ tile.description }}</p>
-          <a v-on:click="filterTilesByTag(tile.major)">X {{ tile.major }}</a>
+          <a v-on:click="filterTilesByTag(tile.major)"># {{ tile.major }}</a>
         </div>
       </div>
       <div class="footer">
@@ -118,20 +118,22 @@
 
       function init() {
         Tabletop.init( {
-          key: '',
-          simpleSheet: true }
+          key: 'https://docs.google.com/spreadsheets/d/19seYcWtzkf4YZTyaobE63dm8B9k0_9dqv0RZ4l5Vo-Q/edit?usp=sharing',
+          simpleSheet: false }
         ).then(function(data, tabletop) {
           console.log(data);
+          // loading projects
+          projectsData = data["Projects"].elements;
           let majors = [];
           let tiles = [];
-          for (let i = 0; i < data.length; i++) {
-            tiles.push(new Tile(data[i]['Capstone Title for Website (100 characters max)'],
-              data[i]['First Name']+' '+data[i]['Last Name'],
-              data[i]['Capstone Description for Website (200 characters max)'],
-              data[i]['Major(s)'],
-              data[i]['Link']));
-            if (!majors.some(major => major.name === data[i]['Major(s)'])) {
-              majors.push({ name: data[i]['Major(s)'] });
+          for (let i = 0; i < projectsData.length; i++) {
+            tiles.push(new Tile(projectsData[i]['Capstone Title for Website (100 characters max)'],
+              projectsData[i]['Preferred Name'] ? projectsData[i]['Preferred Name'] : projectsData[i]['First Name']+' '+projectsData[i]['Last Name'],
+              projectsData[i]['Capstone Description for Website (200 characters max)'],
+              projectsData[i]['Major(s)'],
+              projectsData[i]['Link']));
+            if (!majors.some(major => major.name === projectsData[i]['Major(s)'])) {
+              majors.push({ name: projectsData[i]['Major(s)'] });
             }
           }
           app.tiles = tiles;
