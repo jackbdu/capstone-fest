@@ -28,13 +28,42 @@
         </div>
       </div>
       <div class="container">
-        <div class="tile" v-for="tile in filteredTiles" v-if="tile.type === 'project'">
+        <div class="tile video" v-for="tile in filteredTiles" v-if="tile.type === 'video'">
+          <h3>{{ tile.title }}</h3>
+          <video>
+            <source src="a-message-from-the-dean.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="tile project" v-for="tile in filteredTiles" v-if="tile.type === 'project'">
           <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
-          <h4>{{ tile.author }}</h4>
+          <h4>{{ tile.subtitle }}</h4>
           <p>{{ tile.description }}</p>
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
           </div>
+        </div>
+        <div class="tile live" v-for="tile in filteredTiles" v-if="tile.type === 'live'">
+          <h4>Live Event</h4>
+          <h4>{{ tile.description }}</h4>
+          <img src="assets/clock-icon.png" alt="Clock Icon">
+          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
+          <h5>Click to join in</h5>
+          <div class="tags" v-if="tile.tags">
+            <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
+          </div>
+        </div>
+        <div class="tile recorded" v-for="tile in filteredTiles" v-if="tile.type === 'recorded'">
+          <h4>Recorded Event</h4>
+          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
+          <h5>{{ tile.description }}</h5>
+          <div class="tags" v-if="tile.tags">
+            <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
+          </div>
+        </div>
+        <div class="tile book" v-for="tile in filteredTiles" v-if="tile.type === 'book'">
+          <img src="assets/clock-icon.png" alt="Clock Icon">
+          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
         </div>
       </div>
       <div class="footer">
@@ -137,10 +166,11 @@
           simpleSheet: false }
         ).then(function(data, tabletop) {
           console.log(data);
-          // loading projects
-          projectsData = data["Projects"].elements;
-          let majors = [];
           let tiles = [];
+
+          // loading projects
+          let majors = [];
+          projectsData = data["Projects"].elements;
           for (let i = 0; i < projectsData.length; i++) {
             tiles.push(new Tile('project',
               projectsData[i]['Title'],
@@ -148,14 +178,62 @@
               projectsData[i]['Description'],
               projectsData[i]['Link'],
               projectsData[i]['Image Link'],
-              projectsData[i]['Tags'].split(', ')));
+              projectsData[i]['Tags'] ? projectsData[i]['Tags'].split(', ') : []));
             if (!majors.some(major => major.name === projectsData[i]['Major'])) {
               majors.push({ name: projectsData[i]['Major'] });
             }
           }
+          app.majors = majors;
+
+          // loading live events
+          liveEventsData = data["Live Events"].elements;
+          for (let i = 0; i < liveEventsData.length; i++) {
+            tiles.push(new Tile('live',
+              liveEventsData[i]['Title'],
+              liveEventsData[i]['Time'],
+              liveEventsData[i]['Description'],
+              liveEventsData[i]['Link'],
+              '',
+              liveEventsData[i]['Tags'] ? liveEventsData[i]['Tags'].split(', ') : []));
+          }
+
+          // loading recorded events
+          recordedEventsData = data["Recorded Events"].elements;
+          for (let i = 0; i < recordedEventsData.length; i++) {
+            tiles.push(new Tile('recorded',
+              recordedEventsData[i]['Title'],
+              recordedEventsData[i]['Time'],
+              recordedEventsData[i]['Description'],
+              recordedEventsData[i]['Link'],
+              '',
+              recordedEventsData[i]['Tags'] ? recordedEventsData[i]['Tags'].split(', ') : []));
+          }
+
+          // loading videos
+          videoData = data["Videos"].elements;
+          for (let i = 0; i < videoData.length; i++) {
+            tiles.push(new Tile('video',
+              videoData[i]['Title'],
+              '',
+              videoData[i]['Description'],
+              videoData[i]['Link'],
+              '',
+              videoData[i]['Tags'] ? videoData[i]['Tags'].split(', ') : []));
+          }
+
+          // loading archival book
+          bookData = data["Archival Book"].elements;
+          for (let i = 0; i < bookData.length; i++) {
+            tiles.push(new Tile('book',
+              bookData[i]['Title'],
+              '',
+              bookData[i]['Book Link'],
+              bookData[i]['Image Link'],
+              bookData[i]['Tags'] ? bookData[i]['Tags'].split(', ') : []));
+          }
+
           app.tiles = tiles;
           app.tilesFilteredByTag = tiles;
-          app.majors = majors;
           window.scrollTo(0,0);
           console.log('top');
         })
