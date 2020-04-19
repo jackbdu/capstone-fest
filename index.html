@@ -32,7 +32,9 @@
           <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
           <h4>{{ tile.author }}</h4>
           <p>{{ tile.description }}</p>
-          <a v-on:click="filterTilesByTag(tile.major)"># {{ tile.major }}</a>
+          <div class="tags" v-if="tile.tags">
+            <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
+          </div>
         </div>
       </div>
       <div class="footer">
@@ -97,9 +99,18 @@
           majors: [{name: 'loading majors...'}]
         },
         methods: {
-          filterTilesByTag: function(tag) {
+          filterTilesByTag: function(selectedTag) {
             window.scrollTo(0, window.innerWidth*.48);
-            this.tilesFilteredByTag = this.tiles.filter(tile => { return tile.tags[0].toLowerCase().includes(tag.toLowerCase());});
+            this.tilesFilteredByTag = this.tiles.filter(function (tile) {
+              if (tile.tags) {
+                for (tag of tile.tags) {
+                  if (tag.toLowerCase() === selectedTag.toLowerCase()) {
+                    return true;
+                  }
+                }
+              }
+              return false;
+            });
           },
           openLink: function(link) {
             window.open(link, '_blank');
@@ -136,7 +147,7 @@
               projectsData[i]['Description'],
               projectsData[i]['Link'],
               projectsData[i]['Image Link'],
-              [projectsData[i]['Major']]));
+              projectsData[i]['Tags'].split(', ')));
             if (!majors.some(major => major.name === projectsData[i]['Major'])) {
               majors.push({ name: projectsData[i]['Major'] });
             }

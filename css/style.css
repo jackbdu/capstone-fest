@@ -197,17 +197,23 @@ h1.hidden, h2.hidden {
   flex: 1;
 }
 
+.container .tile .tags {
+  display: flex;
+}
+
 .container .tile a {
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-size: 0.6vw;
   color: #9CC5CA;
   text-transform: uppercase;
+  padding-right: 1vw;
 }
 
 .container .tile a:hover {
   cursor: pointer;
 }
+
 .footer {
   width: 100%;
   box-sizing: border-box;
