@@ -153,20 +153,59 @@ h1.hidden, h2.hidden {
 }
 
 .container .tile {
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 25%;
-  color: #fff;
-  background: #000;
   background-clip: padding-box;
   box-sizing: border-box;
+  flex: 0 0 25%;
+  height: calc(50vw/3);
+  background-color: gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.container .tile h3 {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 700;
+}
+
+.container .tile.video {
+  background-color: #000;
+  padding: .6vw;
+  border: .7vw solid #fff0;
+  color: #fff;
+  transition: border 0.3s ease-out, padding 0.3s ease-out;
+  align-items: center;
+}
+
+.container .tile.video:hover {
+  padding: 1.3vw;
+  border: 0 solid #fff0;
+}
+
+.container .tile.video h3 {
+  font-size: 1.5vw;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: .3vw;
+}
+
+.container .tile.video video {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.container .tile.video video:focus {
+  outline: none;
+}
+
+.container .tile.project {
+  color: #fff;
+  background-color: #000;
   padding: 1.5vw 5vw 1.5vw 1.5vw;
   border: .7vw solid #fff0;
-  height: calc(50vw/3);
   transition: border 0.3s ease-out, padding 0.3s ease-out;
 }
 
-.container .tile:hover {
+.container .tile.project:hover {
   /* expands background only */
   padding: 2.2vw 5.7vw 2.2vw 2.2vw;
   /* expands background and text */
@@ -176,38 +215,36 @@ h1.hidden, h2.hidden {
   border: 0 solid #fff0;
 }
 
-.container .tile h3 {
+.container .tile.project h3 {
   color: #DA4B39;
-  font-family: "Open Sans Condensed", sans-serif;
-  font-weight: 700;
   font-size: 1vw;
 }
 
-.container .tile h3:hover {
+.container .tile.project h3:hover {
   cursor: pointer;
 }
 
-.container .tile h4 {
+.container .tile.project h4 {
   color: #fff;
   font-family: "Open Sans Condensed", sans-serif;
   font-weight: 700;
   font-size: 1.05vw;
 }
 
-.container .tile p {
+.container .tile.project p {
   padding-top: 1vw;
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
-  font-size: 0.6vw;
+  font-size: 0.55vw;
   line-height: 1vw;
   flex: 1;
 }
 
-.container .tile .tags {
+.container .tile.project .tags {
   display: flex;
 }
 
-.container .tile a {
+.container .tile.project a {
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-size: 0.6vw;
@@ -216,7 +253,7 @@ h1.hidden, h2.hidden {
   margin-right: 1vw;
 }
 
-.container .tile a:hover {
+.container .tile.project a:hover {
   cursor: pointer;
 }
 
@@ -254,33 +291,51 @@ h1.hidden, h2.hidden {
 }
 
 @media only screen and (max-width: 1600px) {
+
   .container .tile {
     flex: 0 0 33.3333333%;
-    padding: 2vw 6.7vw 2vw 2vw;
-    border: 1vw solid #fff0;
     height: calc(200vw/9);
   }
 
-  .container .tile:hover {
+  .container .tile.video {
+    padding: .8vw;
+    border: 1vw solid #fff0;
+  }
+
+  .container .tile.video:hover {
+    padding: 1.8vw;
+  }
+
+  .container .tile.video h3 {
+    font-size: 2vw;
+    padding-bottom: .4vw;
+  }
+
+  .container .tile.project {
+    padding: 2vw 6.7vw 2vw 2vw;
+    border: 1vw solid #fff0;
+  }
+
+  .container .tile.project:hover {
     /* expands background only */
     padding: 3vw 7.7vw 3vw 3vw;
   }
 
-  .container .tile h3 {
+  .container .tile.project h3 {
     font-size: 1.3vw;
   }
 
-  .container .tile h4 {
+  .container .tile.project h4 {
     font-size: 1.4vw;
   }
 
-  .container .tile p {
+  .container .tile.project p {
     padding-top: 1.3vw;
     line-height: 1.3vw;
     font-size: 0.7vw;
   }
 
-  .container .tile a {
+  .container .tile.project a {
     font-size: 0.7vw;
   }
 
@@ -295,33 +350,51 @@ h1.hidden, h2.hidden {
 } 
 
 @media only screen and (max-width: 1200px) {
+
   .container .tile {
     flex: 0 0 50%;
-    padding: 3vw 10vw 3vw 3vw;
-    border: 1.4vw solid #fff0;
     height: calc(100vw/3);
   }
 
-  .container .tile:hover {
+  .container .tile.video {
+    padding: 1.2vw;
+    border: 1.4vw solid #fff0;
+  }
+
+  .container .tile.video:hover {
+    padding: 2.6vw;
+  }
+
+  .container .tile.video h3 {
+    font-size: 3vw;
+    padding-bottom: .6vw;
+  }
+
+  .container .tile.project {
+    padding: 3vw 10vw 3vw 3vw;
+    border: 1.4vw solid #fff0;
+  }
+
+  .container .tile.project:hover {
     /* expands background only */
     padding: 4.4vw 11.4vw 4.4vw 4.4vw;
   }
 
-  .container .tile h3 {
+  .container .tile.project h3 {
     font-size: 2vw;
   }
 
-  .container .tile h4 {
+  .container .tile.project h4 {
     font-size: 2.1vw;
   }
 
-  .container .tile p {
+  .container .tile.project p {
     padding-top: 2vw;
     line-height: 2vw;
     font-size: 1.1vw;
   }
 
-  .container .tile a {
+  .container .tile.project a {
     font-size: 1.1vw;
   }
 
@@ -337,31 +410,48 @@ h1.hidden, h2.hidden {
 @media only screen and (max-width: 640px) {
   .container .tile {
     flex: 0 0 100%;
-    padding: 6vw 20vw 6vw 6vw;
-    border: 2.8vw solid #fff0;
     height: calc(200vw/3);
   }
 
-  .container .tile:hover {
+  .container .tile.video {
+    padding: 2.4vw;
+    border: 2.8vw solid #fff0;
+  }
+
+  .container .tile.video:hover {
+    padding: 5.2vw;
+  }
+
+  .container .tile.video h3 {
+    font-size: 6vw;
+    padding-bottom: 1.2vw;
+  }
+
+  .container .tile.project {
+    padding: 6vw 20vw 6vw 6vw;
+    border: 2.8vw solid #fff0;
+  }
+
+  .container .tile.project:hover {
     /* expands background only */
     padding: 8.8vw 22.8vw 8.8vw 8.8vw;
   }
 
-  .container .tile h3 {
+  .container .tile.project h3 {
     font-size: 4vw;
   }
 
-  .container .tile h4 {
+  .container .tile.project h4 {
     font-size: 4.2vw;
   }
 
-  .container .tile p {
+  .container .tile.project p {
     padding-top: 4vw;
     line-height: 4vw;
     font-size: 2.2vw;
   }
 
-  .container .tile a {
+  .container .tile.project a {
     font-size: 2.2vw;
   }
 

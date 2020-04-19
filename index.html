@@ -30,8 +30,8 @@
       <div class="container">
         <div class="tile video" v-for="tile in filteredTiles" v-if="tile.type === 'video'">
           <h3>{{ tile.title }}</h3>
-          <video>
-            <source src="a-message-from-the-dean.mp4" type="video/mp4">
+          <video controls>
+            <source src="media/a-message-from-the-dean.mp4" type="video/mp4">
           Your browser does not support the video tag.
           </video>
         </div>
