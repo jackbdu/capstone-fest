@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="container">
-        <div class="tile" v-for="tile in filteredTiles">
+        <div class="tile" v-for="tile in filteredTiles" v-if="tile.type === 'project'">
           <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
           <h4>{{ tile.author }}</h4>
           <p>{{ tile.description }}</p>
@@ -118,8 +118,9 @@
         },
         computed: {
           filteredTiles: function() {
-            console.log(this.tilesFilteredByTag);
-            window.scrollTo(0, window.innerWidth*.48);
+            if (this.searchInputVisible) {
+              window.scrollTo(0, window.innerWidth*.48);
+            }
             return this.tilesFilteredByTag.filter(tile => {
               return tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
                 tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -156,6 +157,7 @@
           app.tilesFilteredByTag = tiles;
           app.majors = majors;
           window.scrollTo(0,0);
+          console.log('top');
         })
       }
       window.addEventListener('DOMContentLoaded', init)
