@@ -196,14 +196,14 @@ h1.hidden, h2.hidden {
 
 .container .tile.video {
   background-color: #000;
-  padding: .6vw;
+  padding: .6vw 0;
   border: .7vw solid #fff0;
   color: #fff;
   align-items: center;
 }
 
 .container .tile.video:hover {
-  padding: 1.3vw;
+  padding: 1.3vw 0;
   border: 0 solid #fff0;
 }
 
@@ -214,7 +214,9 @@ h1.hidden, h2.hidden {
 }
 
 .container .tile.video video {
+  object-fit: cover;
   width: 100%;
+  height: 80%;
   flex: 1;
 }
 
@@ -406,12 +408,12 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.video {
-    padding: .8vw;
+    padding: .8vw 0;
     border: 1vw solid #fff0;
   }
 
   .container .tile.video:hover {
-    padding: 1.8vw;
+    padding: 1.8vw 0;
   }
 
   .container .tile.video h3 {
@@ -526,12 +528,12 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.video {
-    padding: 1.2vw;
+    padding: 1.2vw 0;
     border: 1.4vw solid #fff0;
   }
 
   .container .tile.video:hover {
-    padding: 2.6vw;
+    padding: 2.6vw 0;
   }
 
   .container .tile.video h3 {
@@ -651,12 +653,12 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.video {
-    padding: 2.4vw;
+    padding: 2.4vw 0;
     border: 2.8vw solid #fff0;
   }
 
   .container .tile.video:hover {
-    padding: 5.2vw;
+    padding: 5.2vw 0;
   }
 
   .container .tile.video h3 {
