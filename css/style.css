@@ -310,6 +310,9 @@ h1.hidden, h2.hidden {
 .container .tile.project {
   color: #fff;
   background-color: #000;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   padding: 1.5vw 5vw 1.5vw 1.5vw;
   border: .7vw solid #fff0;
 }

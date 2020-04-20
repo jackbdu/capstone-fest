@@ -59,7 +59,7 @@
             <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>
           </div>
         </div>
-        <div class="tile project" v-for="tile in filteredTiles" v-if="tile.type === 'project'">
+        <div v-bind:style="{ backgroundImage: 'linear-gradient(to right, #000c, #000c, #0000), url('+tile.image+')'}" class="tile project" v-for="tile in filteredTiles" v-if="tile.type === 'project'">
           <a v-bind:href="tile.link" target="_blank"><h3>{{ tile.title }}</h3></a>
           <h4>{{ tile.subtitle }}</h4>
           <p>{{ tile.description }}</p>
