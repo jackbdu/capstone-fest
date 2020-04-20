@@ -54,8 +54,10 @@
           </div>
         </div>
         <div class="tile book" v-for="tile in filteredTiles" v-if="tile.type === 'book'">
-          <img v-bind:src="tile.img" alt="Capstone Archival Book">
-          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
+          <img v-bind:src="tile.image" alt="Capstone Archival Book">
+          <div>
+            <h5 v-on:click="openLink(tile.link)">{{ tile.title }}</h5>
+          </div>
         </div>
         <div class="tile project" v-for="tile in filteredTiles" v-if="tile.type === 'project'">
           <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
@@ -226,6 +228,7 @@
           for (let i = 0; i < bookData.length; i++) {
             tiles.push(new Tile('book',
               bookData[i]['Title'],
+              '',
               '',
               bookData[i]['Book Link'],
               bookData[i]['Image Link'],

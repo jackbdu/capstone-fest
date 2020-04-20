@@ -158,7 +158,6 @@ h1.hidden, h2.hidden {
   box-sizing: border-box;
   flex: 1 1 25%;
   height: calc(50vw/3);
-  background-color: gray;
   display: flex;
   flex-direction: column;
   transition: border 0.3s ease-out, padding 0.3s ease-out;
@@ -242,7 +241,7 @@ h1.hidden, h2.hidden {
   flex: 1;
 }
 
-.container .tile.live h5, .container .tile.recorded h5 {
+.container .tile.live h5, .container .tile.recorded h5, .container .tile.book h5 {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   padding-top: .5vw;
@@ -267,6 +266,35 @@ h1.hidden, h2.hidden {
 
 .container .tile.book {
   flex: 2 1 50%;
+  flex-direction: row;
+  background-color: #fff;
+  border: .7vw solid #fff0;
+}
+
+.container .tile.book:hover {
+  border: 0 solid #fff0;
+}
+
+.container .tile.book img {
+  object-fit: cover;
+  width: 50%;
+  height: 100%;
+}
+
+.container .tile.book div {
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.container .tile.book h5 {
+  color: #DA4B39;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 2.2vw;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -6vw);
 }
 
 .container .tile.project {
@@ -391,7 +419,7 @@ h1.hidden, h2.hidden {
     font-size: 2vw;
   }
 
-  .container .tile.live h5, .container .tile.recorded h5 {
+  .container .tile.live h5, .container .tile.recorded h5, .container .tile.book h5 {
     padding-top: .8vw;
     font-size: 2.2vw;
   }
@@ -407,6 +435,12 @@ h1.hidden, h2.hidden {
 
   .container .tile.book {
     flex: 2 1 66.6666666%;
+    border: 1vw solid #fff0;
+  }
+
+  .container .tile.book h5 {
+    padding: 3vw;
+    transform: translate(0, -8vw);
   }
 
   .container .tile.project {
@@ -490,7 +524,7 @@ h1.hidden, h2.hidden {
     font-size: 3vw;
   }
 
-  .container .tile.live h5, .container .tile.recorded h5 {
+  .container .tile.live h5, .container .tile.recorded h5, .container .tile.book h5 {
     padding-top: 1.2vw;
     font-size: 3.3vw;
   }
@@ -506,6 +540,12 @@ h1.hidden, h2.hidden {
 
   .container .tile.book {
     flex: 2 1 100%;
+    border: 1.4vw solid #fff0;
+  }
+
+  .container .tile.book h5 {
+    padding: 4.4vw;
+    transform: translate(0, -12vw);
   }
 
   .container .tile.project {
@@ -587,7 +627,7 @@ h1.hidden, h2.hidden {
     font-size: 6vw;
   }
 
-  .container .tile.live h5, .container .tile.recorded h5 {
+  .container .tile.live h5, .container .tile.recorded h5, .container .tile.book h5 {
     padding-top: 2.4vw;
     font-size: 6.6vw;
   }
@@ -599,6 +639,31 @@ h1.hidden, h2.hidden {
 
   .container .tile.live img {
     width: 12vw;
+  }
+
+  .container .tile.book {
+    box-sizing: border-box;
+    border: 2.8vw solid #fff0;
+    flex-direction: column;
+    height: calc(400vw/3);
+  }
+
+  .container .tile.book img {
+    width: 100%;
+    height: 50%;
+  }
+
+  .container .tile.book div {
+    width: 100%;
+    height: 50%;
+  }
+
+  .container .tile.book h5 {
+    padding: 6vw;
+    top: calc(100vw/3);
+    left: 50%;
+    width: 82vw;
+    transform: translate(-50%, -24vw);
   }
 
   .container .tile.project {
