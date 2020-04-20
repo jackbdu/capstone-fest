@@ -67,20 +67,98 @@ var app = new Vue({
     }
   },
   computed: {
-    filteredTiles: function() {
+    filteredVideoTiles: function() {
+      return this.tilesFilteredByTag.filter(tile => {
+        if (tile.type === "video") {
+          if (tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.type.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.description.toLowerCase().includes(this.search.toLowerCase())) {
+            return true;
+          } else if (tile.tags) {
+            for (tag of tile.tags) {
+              if (tag.toLowerCase().includes(this.search.toLowerCase())) {
+                return true;
+              }
+            }
+          }
+        }
+        return false;
+      });
+    },
+    filteredLiveTiles: function() {
+      return this.tilesFilteredByTag.filter(tile => {
+        if (tile.type === "live") {
+          if (tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.type.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.description.toLowerCase().includes(this.search.toLowerCase())) {
+            return true;
+          } else if (tile.tags) {
+            for (tag of tile.tags) {
+              if (tag.toLowerCase().includes(this.search.toLowerCase())) {
+                return true;
+              }
+            }
+          }
+        }
+        return false;
+      });
+    },
+    filteredRecordedTiles: function() {
+      return this.tilesFilteredByTag.filter(tile => {
+        if (tile.type === "recorded") {
+          if (tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.type.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.description.toLowerCase().includes(this.search.toLowerCase())) {
+            return true;
+          } else if (tile.tags) {
+            for (tag of tile.tags) {
+              if (tag.toLowerCase().includes(this.search.toLowerCase())) {
+                return true;
+              }
+            }
+          }
+        }
+        return false;
+      });
+    },
+    filteredBookTiles: function() {
+      return this.tilesFilteredByTag.filter(tile => {
+        if (tile.type === "book") {
+          if (tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.type.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.description.toLowerCase().includes(this.search.toLowerCase())) {
+            return true;
+          } else if (tile.tags) {
+            for (tag of tile.tags) {
+              if (tag.toLowerCase().includes(this.search.toLowerCase())) {
+                return true;
+              }
+            }
+          }
+        }
+        return false;
+      });
+    },
+    filteredProjectTiles: function() {
       if (this.searchInputVisible) {
         window.scrollTo(0, window.innerWidth*.48);
       }
       return this.tilesFilteredByTag.filter(tile => {
-        if (tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
-            tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
-            tile.type.toLowerCase().includes(this.search.toLowerCase()) ||
-            tile.description.toLowerCase().includes(this.search.toLowerCase())) {
-          return true;
-        } else if (tile.tags) {
-          for (tag of tile.tags) {
-            if (tag.toLowerCase().includes(this.search.toLowerCase())) {
-              return true;
+        if (tile.type === "project") {
+          if (tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.type.toLowerCase().includes(this.search.toLowerCase()) ||
+              tile.description.toLowerCase().includes(this.search.toLowerCase())) {
+            return true;
+          } else if (tile.tags) {
+            for (tag of tile.tags) {
+              if (tag.toLowerCase().includes(this.search.toLowerCase())) {
+                return true;
+              }
             }
           }
         }
