@@ -40,9 +40,9 @@ var app = new Vue({
   data: {
     search: '',
     searchInputVisible: false,
-    tiles: [new Tile('loading capstones...','','','','','',[])],
-    tilesFilteredByTag: [new Tile('loading capstones...','','','','','',[])],
-    majors: [{name: 'loading majors...'}]
+    tiles: [],
+    tilesFilteredByTag: [],
+    majors: []
   },
   methods: {
     filterTilesByTag: function(selectedTag) {
