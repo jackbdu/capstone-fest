@@ -133,11 +133,11 @@ h1.hidden, h2.hidden {
   font-size: 1vw;
 }
 
-.fade-enter-active, .fade-leave-active {
+.search-fade-enter-active, .search-fade-leave-active {
   transition: opacity .3s;
 }
 
-.fade-enter, .fade-leave-to {
+.search-fade-enter, .search-fade-leave-to {
   opacity: 0;
 }
 

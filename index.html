@@ -19,7 +19,7 @@
         <a href="https://nyuad.nyu.edu/" target="_blank"><img class="nyuad-logo" src="assets/nyuad-logo.svg" alt="NYU Abu Dhabi"></a>
         <h2><span><a v-on:click="filterTilesByTag('')">A&H Capstone Fest 2020.</a></span> <a v-on:click="filterTilesByTag('live')">Live events</a> from 8-11 PM</h2>
         <div class="search">
-          <transition name="fade">
+          <transition name="search-fade" v-on:enter="onSearchEnter">
             <div class="search-input-container" v-if="searchInputVisible">
               <input type="text" v-model="search" placeholder="Search keyword..."/>
             </div>

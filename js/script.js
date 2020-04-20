@@ -61,6 +61,9 @@ var app = new Vue({
         }
       });
       window.scrollTo(0, window.innerWidth*.48);
+    },
+    onSearchEnter: function(el) {
+      console.log(el.children[0].focus());
     }
   },
   computed: {
