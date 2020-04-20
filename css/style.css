@@ -28,6 +28,7 @@ body {
   position: fixed;
   top: 3vw;
   left: 4.5vw;
+  z-index: 1;
 }
 
 .header .capstone-fest-logo {
