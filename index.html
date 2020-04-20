@@ -35,6 +35,28 @@
           Your browser does not support the video tag.
           </video>
         </div>
+        <div class="tile live" v-for="tile in filteredTiles" v-if="tile.type === 'live'">
+          <h3>Live Event</h3>
+          <h4>{{ tile.description }}</h4>
+          <h5 v-on:click="openLink(tile.link)">{{ tile.title }}</h5>
+          <h6>Click to join in</h6>
+          <div class="tags" v-if="tile.tags">
+            <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
+          </div>
+          <img src="assets/clock-icon.svg" alt="Clock Icon">
+        </div>
+        <div class="tile recorded" v-for="tile in filteredTiles" v-if="tile.type === 'recorded'">
+          <h3>Recorded Event</h3>
+          <h5 v-on:click="openLink(tile.link)">{{ tile.title }}</h5>
+          <h6>{{ tile.description }}</h6>
+          <div class="tags" v-if="tile.tags">
+            <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
+          </div>
+        </div>
+        <div class="tile book" v-for="tile in filteredTiles" v-if="tile.type === 'book'">
+          <img v-bind:src="tile.img" alt="Capstone Archival Book">
+          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
+        </div>
         <div class="tile project" v-for="tile in filteredTiles" v-if="tile.type === 'project'">
           <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
           <h4>{{ tile.subtitle }}</h4>
@@ -42,28 +64,6 @@
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
           </div>
-        </div>
-        <div class="tile live" v-for="tile in filteredTiles" v-if="tile.type === 'live'">
-          <h4>Live Event</h4>
-          <h4>{{ tile.description }}</h4>
-          <img src="assets/clock-icon.png" alt="Clock Icon">
-          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
-          <h5>Click to join in</h5>
-          <div class="tags" v-if="tile.tags">
-            <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
-          </div>
-        </div>
-        <div class="tile recorded" v-for="tile in filteredTiles" v-if="tile.type === 'recorded'">
-          <h4>Recorded Event</h4>
-          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
-          <h5>{{ tile.description }}</h5>
-          <div class="tags" v-if="tile.tags">
-            <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
-          </div>
-        </div>
-        <div class="tile book" v-for="tile in filteredTiles" v-if="tile.type === 'book'">
-          <img src="assets/clock-icon.png" alt="Clock Icon">
-          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
         </div>
       </div>
       <div class="footer">
