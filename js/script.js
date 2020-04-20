@@ -69,7 +69,6 @@ var app = new Vue({
         window.scrollTo(0, window.innerWidth*.48);
       }
       return this.tilesFilteredByTag.filter(tile => {
-        console.log(tile);
         if (tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
             tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
             tile.type.toLowerCase().includes(this.search.toLowerCase()) ||
