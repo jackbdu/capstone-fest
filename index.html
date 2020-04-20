@@ -17,7 +17,7 @@
         <img class="capstone-fest-logo" src="assets/capstone-fest-logo.svg" alt="Arts & Humanities Capstone Fest 2020">
         <h1>May 6—7, 2020. <a v-on:click="filterTilesByTag('live')">Live events</a> from 8-11 PM</h1>
         <a href="https://nyuad.nyu.edu/" target="_blank"><img class="nyuad-logo" src="assets/nyuad-logo.svg" alt="NYU Abu Dhabi"></a>
-        <h2><span>A&H Capstone Fest 2020.</span> <a v-on:click="filterTilesByTag('live')">Live events</a> from 8-11 PM</h2>
+        <h2><span><a v-on:click="filterTilesByTag('')">A&H Capstone Fest 2020.</a></span> <a v-on:click="filterTilesByTag('live')">Live events</a> from 8-11 PM</h2>
         <div class="search">
           <transition name="fade">
             <div class="search-input-container" v-if="searchInputVisible">
@@ -38,7 +38,7 @@
         <div class="tile live" v-for="tile in filteredTiles" v-if="tile.type === 'live'">
           <h3>Live Event</h3>
           <h4>{{ tile.description }}</h4>
-          <h5 v-on:click="openLink(tile.link)">{{ tile.title }}</h5>
+          <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>
           <h6>Click to join in</h6>
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
@@ -47,7 +47,7 @@
         </div>
         <div class="tile recorded" v-for="tile in filteredTiles" v-if="tile.type === 'recorded'">
           <h3>Recorded Event</h3>
-          <h5 v-on:click="openLink(tile.link)">{{ tile.title }}</h5>
+          <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>
           <h6>{{ tile.description }}</h6>
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
@@ -56,11 +56,11 @@
         <div class="tile book" v-for="tile in filteredTiles" v-if="tile.type === 'book'">
           <img v-bind:src="tile.image" alt="Capstone Archival Book">
           <div>
-            <h5 v-on:click="openLink(tile.link)">{{ tile.title }}</h5>
+            <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>
           </div>
         </div>
         <div class="tile project" v-for="tile in filteredTiles" v-if="tile.type === 'project'">
-          <h3 v-on:click="openLink(tile.link)">{{ tile.title }}</h3>
+          <a v-bind:href="tile.link" target="_blank"><h3>{{ tile.title }}</h3></a>
           <h4>{{ tile.subtitle }}</h4>
           <p>{{ tile.description }}</p>
           <div class="tags" v-if="tile.tags">
@@ -104,10 +104,6 @@
 
       loop();
 
-
-      window.onload = function() {
-      }
-
       class Tile {
         constructor(type, title, subtitle, description, link, image, tags) {
           this.type = type;
@@ -125,26 +121,27 @@
         data: {
           search: '',
           searchInputVisible: false,
-          tiles: [],
-          tilesFilteredByTag: [new Tile('loading capstones...','','','')],
+          tiles: [new Tile('loading capstones...','','','','','',[])],
+          tilesFilteredByTag: [new Tile('loading capstones...','','','','','',[])],
           majors: [{name: 'loading majors...'}]
         },
         methods: {
           filterTilesByTag: function(selectedTag) {
-            window.scrollTo(0, window.innerWidth*.48);
             this.tilesFilteredByTag = this.tiles.filter(function (tile) {
-              if (tile.tags) {
-                for (tag of tile.tags) {
-                  if (tag.toLowerCase() === selectedTag.toLowerCase()) {
-                    return true;
+              if (selectedTag) {
+                if (tile.tags) {
+                  for (tag of tile.tags) {
+                    if (tag.toLowerCase() === selectedTag.toLowerCase()) {
+                      return true;
+                    }
                   }
                 }
+                return false;
+              } else {
+                return true;
               }
-              return false;
             });
-          },
-          openLink: function(link) {
-            window.open(link, '_blank');
+            window.scrollTo(0, window.innerWidth*.48);
           }
         },
         computed: {
@@ -153,10 +150,20 @@
               window.scrollTo(0, window.innerWidth*.48);
             }
             return this.tilesFilteredByTag.filter(tile => {
-              return tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
-                tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
-                tile.description.toLowerCase().includes(this.search.toLowerCase()) ||
-                tile.tags[0].toLowerCase().includes(this.search.toLowerCase())
+              console.log(tile);
+              if (tile.title.toLowerCase().includes(this.search.toLowerCase()) ||
+                  tile.subtitle.toLowerCase().includes(this.search.toLowerCase()) ||
+                  tile.type.toLowerCase().includes(this.search.toLowerCase()) ||
+                  tile.description.toLowerCase().includes(this.search.toLowerCase())) {
+                return true;
+              } else if (tile.tags) {
+                for (tag of tile.tags) {
+                  if (tag.toLowerCase().includes(this.search.toLowerCase())) {
+                    return true;
+                  }
+                }
+              }
+              return false;
             });
           }
         }
@@ -175,11 +182,11 @@
           projectsData = data["Projects"].elements;
           for (let i = 0; i < projectsData.length; i++) {
             tiles.push(new Tile('project',
-              projectsData[i]['Title'],
-              projectsData[i]['Preferred Name'] ? projectsData[i]['Preferred Name'] : projectsData[i]['First Name']+' '+projectsData[i]['Last Name'],
-              projectsData[i]['Description'],
-              projectsData[i]['Link'],
-              projectsData[i]['Image Link'],
+              projectsData[i]['Title'] ? projectsData[i]['Title'] : "",
+              projectsData[i]['Preferred Name'] ? projectsData[i]['Preferred Name'] : (projectsData[i]['First Name'] ? projectsData[i]['First Name'] + " ": "")+(projectsData[i]['Last Name'] ? projectsData[i]['Last Name'] : ""),
+              projectsData[i]['Description'] ? projectsData[i]['Description'] : "",
+              projectsData[i]['Link'] ? projectsData[i]['Link'] : "",
+              projectsData[i]['Image Link'] ? projectsData[i]['Image Link'] : "",
               projectsData[i]['Tags'] ? projectsData[i]['Tags'].split(', ') : []));
             if (!majors.some(major => major.name === projectsData[i]['Major'])) {
               majors.push({ name: projectsData[i]['Major'] });
@@ -191,10 +198,10 @@
           liveEventsData = data["Live Events"].elements;
           for (let i = 0; i < liveEventsData.length; i++) {
             tiles.push(new Tile('live',
-              liveEventsData[i]['Title'],
-              liveEventsData[i]['Time'],
-              liveEventsData[i]['Description'],
-              liveEventsData[i]['Link'],
+              liveEventsData[i]['Title'] ? liveEventsData[i]['Title'] : '',
+              liveEventsData[i]['Time'] ? liveEventsData[i]['Time'] : '',
+              liveEventsData[i]['Description'] ? liveEventsData[i]['Description'] : '',
+              liveEventsData[i]['Link'] ? liveEventsData[i]['Link'] : '',
               '',
               liveEventsData[i]['Tags'] ? liveEventsData[i]['Tags'].split(', ') : []));
           }
@@ -203,10 +210,10 @@
           recordedEventsData = data["Recorded Events"].elements;
           for (let i = 0; i < recordedEventsData.length; i++) {
             tiles.push(new Tile('recorded',
-              recordedEventsData[i]['Title'],
-              recordedEventsData[i]['Time'],
-              recordedEventsData[i]['Description'],
-              recordedEventsData[i]['Link'],
+              recordedEventsData[i]['Title'] ? recordedEventsData[i]['Title'] : '',
+              recordedEventsData[i]['Time'] ? recordedEventsData[i]['Time'] : '',
+              recordedEventsData[i]['Description'] ? recordedEventsData[i]['Description'] : '',
+              recordedEventsData[i]['Link'] ? recordedEventsData[i]['Link'] : '',
               '',
               recordedEventsData[i]['Tags'] ? recordedEventsData[i]['Tags'].split(', ') : []));
           }
@@ -215,11 +222,11 @@
           videoData = data["Videos"].elements;
           for (let i = 0; i < videoData.length; i++) {
             tiles.push(new Tile('video',
-              videoData[i]['Title'],
+              videoData[i]['Title'] ? videoData[i]['Title'] : '',
               '',
-              videoData[i]['Description'],
-              videoData[i]['Video Link'],
-              videoData[i]['Cover Link'],
+              videoData[i]['Description'] ? videoData[i]['Description'] : '',
+              videoData[i]['Video Link'] ? videoData[i]['Video Link'] : '',
+              videoData[i]['Cover Link'] ? videoData[i]['Cover Link'] : '',
               videoData[i]['Tags'] ? videoData[i]['Tags'].split(', ') : []));
           }
 
@@ -227,11 +234,11 @@
           bookData = data["Archival Book"].elements;
           for (let i = 0; i < bookData.length; i++) {
             tiles.push(new Tile('book',
-              bookData[i]['Title'],
+              bookData[i]['Title'] ? bookData[i]['Title'] : '',
               '',
               '',
-              bookData[i]['Book Link'],
-              bookData[i]['Image Link'],
+              bookData[i]['Book Link'] ? bookData[i]['Book Link'] : '',
+              bookData[i]['Image Link'] ? bookData[i]['Image Link'] : '',
               bookData[i]['Tags'] ? bookData[i]['Tags'].split(', ') : []));
           }
 
