@@ -156,7 +156,7 @@ h1.hidden, h2.hidden {
 .container .tile {
   background-clip: padding-box;
   box-sizing: border-box;
-  flex: 0 0 25%;
+  flex: 1 1 25%;
   height: calc(50vw/3);
   background-color: gray;
   display: flex;
@@ -266,7 +266,7 @@ h1.hidden, h2.hidden {
 }
 
 .container .tile.book {
-  flex: 2 0 50%;
+  flex: 2 1 50%;
 }
 
 .container .tile.project {
@@ -405,6 +405,10 @@ h1.hidden, h2.hidden {
     width: 4vw;
   }
 
+  .container .tile.book {
+    flex: 2 1 66.6666666%;
+  }
+
   .container .tile.project {
     padding: 2vw 6.7vw 2vw 2vw;
     border: 1vw solid #fff0;
@@ -498,6 +502,10 @@ h1.hidden, h2.hidden {
 
   .container .tile.live img {
     width: 6vw;
+  }
+
+  .container .tile.book {
+    flex: 2 1 100%;
   }
 
   .container .tile.project {
