@@ -88,6 +88,12 @@ h1.hidden, h2.hidden {
   cursor: pointer;
 }
 
+.header .google {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .header .search {
   position: fixed;
   top: 3.5vw;
