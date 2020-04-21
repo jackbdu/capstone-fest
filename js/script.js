@@ -220,10 +220,11 @@ function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
-    listMajors();
+    loadData();
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
+    removeData();
   }
 }
 
@@ -255,7 +256,7 @@ function appendPre(message) {
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  */
-function listMajors() {
+function loadData() {
   const sheetNames = ["Projects", "Videos", "'Live Events'", "'Recorded Events'", "'Archival Book'"];
 
   gapi.client.sheets.spreadsheets.values.batchGet({
@@ -360,4 +361,10 @@ function listMajors() {
   }, function(response) {
     console.log('Error: ' + response.result.error.message);
   });
+}
+
+function removeData() {
+  app.tiles = [];
+  app.tilesFilteredByTag = [];
+  app.majors = []
 }
