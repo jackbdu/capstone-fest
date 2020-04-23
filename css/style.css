@@ -348,7 +348,7 @@ h1.hidden, h2.hidden {
   color: #fff;
   font-family: "Open Sans Condensed", sans-serif;
   font-weight: 700;
-  font-size: 1.05vw;
+  font-size: 1vw;
 }
 
 .container .tile.project p {
@@ -483,12 +483,8 @@ h1.hidden, h2.hidden {
     padding: 3vw 7.7vw 3vw 3vw;
   }
 
-  .container .tile.project h3 {
+  .container .tile.project h3, .container .tile.project h4 {
     font-size: 1.3vw;
-  }
-
-  .container .tile.project h4 {
-    font-size: 1.4vw;
   }
 
   .container .tile.project p {
@@ -603,12 +599,8 @@ h1.hidden, h2.hidden {
     padding: 4.4vw 11.4vw 4.4vw 4.4vw;
   }
 
-  .container .tile.project h3 {
+  .container .tile.project h3, .container .tile.project h4 {
     font-size: 2vw;
-  }
-
-  .container .tile.project h4 {
-    font-size: 2.1vw;
   }
 
   .container .tile.project p {
@@ -743,12 +735,8 @@ h1.hidden, h2.hidden {
     padding: 8.8vw 22.8vw 8.8vw 8.8vw;
   }
 
-  .container .tile.project h3 {
+  .container .tile.project h3, .container .tile.project h4 {
     font-size: 4vw;
-  }
-
-  .container .tile.project h4 {
-    font-size: 4.2vw;
   }
 
   .container .tile.project p {
