@@ -679,10 +679,6 @@ h1.hidden, h2.hidden {
 
   .header .gradient {
     height: 20vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: linear-gradient(#fff, #fff 50%, #fff0);
   }
 
   .container .tile {
