@@ -144,7 +144,7 @@ var app = new Vue({
       });
     },
     filteredProjectTiles: function() {
-      if (this.searchInputVisible) {
+      if (this.searchInputVisible && !isMobileDevice) {
         window.scrollTo(0, window.innerWidth*.48);
       }
       return this.tilesFilteredByTag.filter(tile => {
@@ -368,3 +368,7 @@ function removeData() {
   app.tilesFilteredByTag = [];
   app.majors = []
 }
+
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
