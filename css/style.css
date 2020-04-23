@@ -74,18 +74,24 @@ h1.hidden, h2.hidden {
   display: none;
 }
 
+.header a {
+  color: #DA4B39;
+  text-decoration: underline;
+  transition: color .3s ease-out;
+}
+
+.header a:hover {
+  cursor: pointer;
+  color: #FC6D5B;
+}
+
 .header h2 span a {
   color: #000;
   text-decoration: none;
 }
 
-.header a {
-  color: #DA4B39;
-  text-decoration: underline;
-}
-
-.header a:hover {
-  cursor: pointer;
+.header h2 span a:hover {
+  color: #555;
 }
 
 .header .google {
@@ -198,6 +204,7 @@ h1.hidden, h2.hidden {
 
 .container .tile .tags a:hover {
   cursor: pointer;
+  color: #BEE7EC;
 }
 
 .container .tile.video {
@@ -265,6 +272,11 @@ h1.hidden, h2.hidden {
   font-size: 1.7vw;
   color: #9CC5CA;
   flex: 1;
+  transition: color .3s ease-out;
+}
+
+.container .tile.live a h5:hover, .container .tile.recorded a h5:hover {
+  color: #BEE7EC;
 }
 
 .container .tile.live h6, .container .tile.recorded h6 {
@@ -315,6 +327,10 @@ h1.hidden, h2.hidden {
   transform: translate(0, -6vw);
 }
 
+.container .tile.book h5:hover {
+  color: #FC6D5B;
+}
+
 .container .tile.project {
   color: #fff;
   background-color: #000;
@@ -338,10 +354,12 @@ h1.hidden, h2.hidden {
 .container .tile.project h3 {
   color: #DA4B39;
   font-size: 1vw;
+  transition: color .3s ease-out;
 }
 
-.container .tile.project h3:hover {
+.container .tile.project a h3:hover {
   cursor: pointer;
+  color: #FC6D5B;
 }
 
 .container .tile.project h4 {
@@ -387,10 +405,12 @@ h1.hidden, h2.hidden {
 .footer li a {
   color: #DD4C37;
   text-decoration: underline;
+  transition: color .3s ease-out;
 }
 
 .footer li a:hover {
   cursor: pointer;
+  color: #FC6D5B;
 }
 
 @media only screen and (max-width: 1600px) {
