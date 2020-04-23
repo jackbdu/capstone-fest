@@ -677,6 +677,14 @@ h1.hidden, h2.hidden {
     font-size: 3vw;
   }
 
+  .header .gradient {
+    height: 20vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(#fff, #fff 50%, #fff0);
+  }
+
   .container .tile {
     flex: 0 0 100%;
     height: calc(200vw/3);
