@@ -144,7 +144,7 @@ h1.hidden, h2.hidden {
   height: 100%;
   box-sizing: border-box;
   padding: 1vw;
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 1vw;
 }
@@ -198,7 +198,7 @@ h1.hidden, h2.hidden {
 }
 
 .container .tile .tags a {
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.6vw;
   color: #9CC5CA;
@@ -270,7 +270,7 @@ h1.hidden, h2.hidden {
 }
 
 .container .tile.live h5, .container .tile.recorded h5, .container .tile.book h5 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   padding-top: .5vw;
   font-size: 1.7vw;
