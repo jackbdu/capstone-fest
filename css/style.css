@@ -91,7 +91,7 @@ h1.hidden, h2.hidden {
 }
 
 .header h2 span:first-child a:hover {
-  color: #555;
+  color: #777;
 }
 
 .header h2 span:nth-child(2) {
