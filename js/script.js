@@ -179,8 +179,10 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-var authorizeButton = document.getElementById('authorize_button');
-var signoutButton = document.getElementById('signout_button');
+var authorizeButton = document.getElementById('login');
+var signoutButton = document.getElementById('logout');
+var loginPage = document.getElementById('signin-page');
+var mainPage = document.getElementById('app');
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -218,12 +220,12 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
-    authorizeButton.style.display = 'none';
-    signoutButton.style.display = 'block';
+    loginPage.style.display = 'none';
+    mainPage.style.display = 'block';
     loadData();
   } else {
-    authorizeButton.style.display = 'block';
-    signoutButton.style.display = 'none';
+    loginPage.style.display = 'block';
+    mainPage.style.display = 'none';
     removeData();
   }
 }

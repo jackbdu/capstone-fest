@@ -13,6 +13,40 @@ body {
   height: 100%;
 }
 
+#signin-page {
+  background: #9DC6CA;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.banner {
+  width: 100%;
+  height: 10vw;
+  background: #57068c;
+  z-index: 8;
+  color: white;
+  text-align: center;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 2vw;
+}
+
+.banner p {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+.banner a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -20,7 +54,7 @@ body {
 }
 
 .header {
-  z-index: 1;
+  z-index: 2;
 }
 
 .header .nyuad-logo {
@@ -28,7 +62,7 @@ body {
   position: fixed;
   top: 3vw;
   left: 4.5vw;
-  z-index: 1;
+  z-index: 3;
 }
 
 .header .capstone-fest-logo {
@@ -37,6 +71,7 @@ body {
   top: -13vw;
   left: 50%;
   transform: translate(-50%, 0);
+  z-index: 2;
 }
 
 .header .capstone-fest-logo.hidden {
@@ -68,6 +103,7 @@ body {
   right: 10vw;
   white-space: nowrap;
   opacity: 0;
+  z-index: 2;
 }
 
 h1.hidden, h2.hidden {
@@ -96,12 +132,6 @@ h1.hidden, h2.hidden {
 
 .header h2 span:nth-child(2) {
   color: #000;
-}
-
-.header .google {
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .header .search {
@@ -164,6 +194,7 @@ h1.hidden, h2.hidden {
   top: 0;
   left: 0;
   background: linear-gradient(#fff, #fff 50%, #fff0);
+  z-index: 1;
 }
 
 .container {
@@ -296,6 +327,7 @@ h1.hidden, h2.hidden {
   position: absolute;
   width: 3vw;
   align-self: flex-end;
+  z-index: 0;
 }
 
 .container .tile.book {
