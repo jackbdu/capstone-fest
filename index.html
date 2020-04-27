@@ -74,12 +74,20 @@
         </div>
       </div>
       <div class="footer">
-        <ul>
-          <li v-for="major in majors">
-            <a v-on:click="filterTilesByTag(major.name)">{{ major.name }}</a>
-          </li>
-        </ul>
-        <button id="logout">Log Out</button>
+        <div class="majors">
+          <h3>All Majors</h3>
+          <ul>
+            <li v-for="major in majors">
+              <a v-on:click="filterTilesByTag(major.name)">{{ major.name }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="notice">
+          <h3>Content Privacy</h3>
+          <p>This site and its content is private to the New York University community. Do not share screenshots, text, or other content from this page or linked pages without express permission from the authors.</p>
+          <button id="logout">Log Out</button>
+          <p>© New York University Abu Dhabi</p>
+        </div>
       </div>
     </div>
     <script src="js/script.js"></script>
