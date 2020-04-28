@@ -158,10 +158,12 @@ h1.hidden, h2.hidden {
   background-size: contain;
   background: url(../assets/search-icon.svg) no-repeat center center;
   z-index: 3;
+  transition: filter .3s ease-out;
 }
 
 .header .search button:hover {
   cursor: pointer;
+  filter: brightness(120%);
 }
 
 .header .search button:focus {
@@ -243,6 +245,7 @@ h1.hidden, h2.hidden {
   color: #9CC5CA;
   text-transform: uppercase;
   margin-right: 1vw;
+  transition: color .3s ease-out;
 }
 
 .container .tile .tags a:hover {
