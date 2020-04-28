@@ -11,9 +11,11 @@
     <script src="js/vue.js"></script>
   </head>
   <body>
-    <div id="app" v-bind:class="{ hasBanner: !isSignedIn }">
-      <div v-if="!isSignedIn" class="banner">
-        <p>NYU SSO required to view this page. Please <a onclick="handleAuthClick();">click here to log in</a>.</p>
+    <div id="app" v-bind:class="{ hasBanner: !tiles.length }">
+      <div v-if="!tiles.length" class="banner">
+        <p v-if="isSignedIn === null">Checking login status...</p>
+        <p v-if="isSignedIn === true && !tiles.length">Loading projects...</p>
+        <p v-if="isSignedIn === false">NYU SSO required to view this page. Please <a onclick="handleAuthClick();">click here to log in</a>.</p>
       </div>
       <div class="header">
         <div class="gradient"></div>
@@ -88,8 +90,9 @@
         <div class="notice">
           <h3>Content Privacy</h3>
           <p>This site and its content is private to the New York University community. Do not share screenshots, text, or other content from this page or linked pages without express permission from the authors.</p>
-          <button v-if="!isSignedIn" onclick="handleAuthClick();">Log In</button>
-          <button v-if="isSignedIn" onclick="handleSignoutClick();" id="logout">Log Out</button>
+          <button v-if="isSignedIn === false" onclick="handleAuthClick();">Log In</button>
+          <button v-if="isSignedIn === null">Checking...</button>
+          <button v-if="isSignedIn === true" onclick="handleSignoutClick();">Log Out</button>
           <p>© New York University Abu Dhabi</p>
         </div>
       </div>

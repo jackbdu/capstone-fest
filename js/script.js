@@ -44,7 +44,7 @@ var app = new Vue({
     tilesFilteredByTag: [],
     majors: [],
     activeTag: '',
-    isSignedIn: false
+    isSignedIn: null
   },
   methods: {
     filterTilesByTag: function(selectedTag) {
