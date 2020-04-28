@@ -13,13 +13,6 @@ body {
   height: 100%;
 }
 
-#signin-page {
-  background: #9DC6CA;
-  width: 100%;
-  height: 100%;
-  z-index: 5;
-}
-
 .banner {
   width: 100%;
   height: 10vw;
@@ -27,7 +20,7 @@ body {
   z-index: 8;
   color: #fff;
   text-align: center;
-  position: relative;
+  position: fixed;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 2vw;
@@ -70,6 +63,10 @@ body {
   z-index: 3;
 }
 
+.hasBanner .header .nyuad-logo {
+  top: 13vw;
+}
+
 .header .capstone-fest-logo {
   width: 91vw;
   position: absolute;
@@ -77,6 +74,10 @@ body {
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 2;
+}
+
+.hasBanner .header .capstone-fest-logo {
+  top: -3vw;
 }
 
 .header .capstone-fest-logo.hidden {
@@ -96,6 +97,10 @@ body {
   white-space: nowrap;
 }
 
+.hasBanner .header h1 {
+  top: 56vw;
+}
+
 .header h2 {
   width: 100%;
   color: #DA4B39;
@@ -109,6 +114,10 @@ body {
   white-space: nowrap;
   opacity: 0;
   z-index: 2;
+}
+
+.hasBanner .header h2 {
+  top: 13vw;
 }
 
 h1.hidden, h2.hidden {
@@ -161,6 +170,10 @@ h1.hidden, h2.hidden {
   transition: filter .3s ease-out;
 }
 
+.hasBanner .search button {
+  display: none;
+}
+
 .header .search button:hover {
   cursor: pointer;
   filter: brightness(120%);
@@ -207,12 +220,20 @@ h1.hidden, h2.hidden {
   z-index: 1;
 }
 
+.hasBanner .header .gradient {
+  top: 10vw;
+}
+
 .container {
   padding: 58vw 3vw 10vw 3vw;
   flex: 1;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+}
+
+.hasBanner .container {
+  padding-top: 68vw;
 }
 
 .container .tile {
@@ -534,6 +555,10 @@ h1.hidden, h2.hidden {
   color: #aaa;
 }
 
+.footer .notice button:focus {
+  outline: none;
+}
+
 @media only screen and (max-width: 1600px) {
 
   .header .search .search-input-container {
@@ -807,6 +832,30 @@ h1.hidden, h2.hidden {
 
   .header .nyuad-logo {
     height: 7vw;
+  }
+
+  .hasBanner .header .nyuad-logo {
+    top: 23vw;
+  }
+
+  .hasBanner .header .capstone-fest-logo {
+    top: 7vw;
+  }
+
+  .hasBanner .header h1 {
+    top: 66vw;
+  }
+
+  .hasBanner .header h2 {
+    top: 23vw;
+  }
+
+  .hasBanner .header .gradient {
+    top: 20vw;
+  }
+
+  .hasBanner .container {
+    padding-top: 78vw;
   }
 
   .header h2 {

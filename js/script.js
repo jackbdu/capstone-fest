@@ -43,7 +43,8 @@ var app = new Vue({
     tiles: [],
     tilesFilteredByTag: [],
     majors: [],
-    activeTag: ''
+    activeTag: '',
+    isSignedIn: false
   },
   methods: {
     filterTilesByTag: function(selectedTag) {
@@ -214,8 +215,6 @@ function initClient() {
 
     // Handle the initial sign-in state.
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    authorizeButton.onclick = handleAuthClick;
-    signoutButton.onclick = handleSignoutClick;
   }, function(error) {
     appendPre(JSON.stringify(error, null, 2));
   });
@@ -227,12 +226,10 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
-    loginPage.style.display = 'none';
-    mainPage.style.display = 'block';
+    app.isSignedIn = true;
     loadData();
   } else {
-    loginPage.style.display = 'block';
-    mainPage.style.display = 'none';
+    app.isSignedIn = false;
     removeData();
   }
 }

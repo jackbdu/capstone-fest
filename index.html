@@ -11,12 +11,10 @@
     <script src="js/vue.js"></script>
   </head>
   <body>
-    <div id="signin-page" style="display: block;">
-      <div class="banner">
-        <p>NYU SSO required to view this page. Please <a id="login">click here to log in</a>.</p>
+    <div id="app" v-bind:class="{ hasBanner: !isSignedIn }">
+      <div v-if="!isSignedIn" class="banner">
+        <p>NYU SSO required to view this page. Please <a onclick="handleAuthClick();">click here to log in</a>.</p>
       </div>
-    </div>
-    <div id="app" style="display: none;">
       <div class="header">
         <div class="gradient"></div>
         <a v-on:click="filterTilesByTag('')"><img class="capstone-fest-logo" src="assets/capstone-fest-logo.svg" alt="Arts & Humanities Capstone Fest 2020"></a>
@@ -90,7 +88,8 @@
         <div class="notice">
           <h3>Content Privacy</h3>
           <p>This site and its content is private to the New York University community. Do not share screenshots, text, or other content from this page or linked pages without express permission from the authors.</p>
-          <button id="logout">Log Out</button>
+          <button v-if="!isSignedIn" onclick="handleAuthClick();">Log In</button>
+          <button v-if="isSignedIn" onclick="handleSignoutClick();" id="logout">Log Out</button>
           <p>© New York University Abu Dhabi</p>
         </div>
       </div>
