@@ -79,7 +79,7 @@
         </div>
       </div>
       <div class="footer">
-        <div class="majors">
+        <div v-if="majors.length" class="majors">
           <h3>All Majors</h3>
           <ul>
             <li v-for="major in majors">
