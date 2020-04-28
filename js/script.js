@@ -42,10 +42,12 @@ var app = new Vue({
     searchInputVisible: false,
     tiles: [],
     tilesFilteredByTag: [],
-    majors: []
+    majors: [],
+    activeTag: ''
   },
   methods: {
     filterTilesByTag: function(selectedTag) {
+      this.activeTag = selectedTag;
       this.tilesFilteredByTag = this.tiles.filter(function (tile) {
         if (selectedTag) {
           if (tile.tags) {
@@ -64,6 +66,11 @@ var app = new Vue({
     },
     onSearchEnter: function(el) {
       el.children[0].focus();
+    },
+    removeFilters: function() {
+      this.search = '';
+      this.tilesFilteredByTag = this.tiles;
+      this.activeTag = '';
     }
   },
   computed: {

@@ -250,6 +250,41 @@ h1.hidden, h2.hidden {
   color: #BEE7EC;
 }
 
+.container .tile.results {
+  background-color: #fff;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+}
+
+.container .tile.results h3, .container .tile.results h4, .container .tile.results h5 {
+  font-size: 1.5vw;
+}
+
+.container .tile.results h4 {
+  flex: 1;
+}
+
+.container .tile.results a {
+  color: #DA4B39;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color .3s ease-out;
+}
+
+.container .tile.results a:hover {
+  color: #FC6D5B;
+  cursor: pointer;
+}
+
+.container .tile.results img {
+  width: 2vw;
+  padding-right: .5vw;
+}
+
 .container .tile.video {
   background-color: #000;
   padding: .6vw 0;
@@ -280,14 +315,17 @@ h1.hidden, h2.hidden {
   outline: none;
 }
 
-.container .tile.live, .container .tile.recorded {
-  background-color: #DA4B39;
+.container .tile.results, .container .tile.live, .container .tile.recorded {
   padding: 1.5vw;
   border: .7vw solid #fff0;
+}
+
+.container .tile.live, .container .tile.recorded {
+  background-color: #DA4B39;
   color: #fff;
 }
 
-.container .tile.live:hover, .container .tile.recorded:hover {
+.container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover {
   padding: 2.2vw;
   border: 0 solid #fff0;
 }
@@ -514,6 +552,15 @@ h1.hidden, h2.hidden {
     margin-right: 1.3vw;
   }
 
+  .container .tile.results h3, .container .tile.results h4, .container .tile.results h5 {
+    font-size: 2vw;
+  }
+
+  .container .tile.results img {
+    width: 2.5vw;
+    padding-right: .7vw;
+  }
+
   .container .tile.video {
     padding: .8vw 0;
     border: 1vw solid #fff0;
@@ -528,12 +575,12 @@ h1.hidden, h2.hidden {
     padding-bottom: .4vw;
   }
 
-  .container .tile.live, .container .tile.recorded {
+  .container .tile.results, .container .tile.live, .container .tile.recorded {
     padding: 2vw;
     border-width: 1vw;
   }
 
-  .container .tile.live:hover, .container .tile.recorded:hover {
+  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover {
     padding: 3vw;
     border-width: 0;
   }
@@ -632,6 +679,15 @@ h1.hidden, h2.hidden {
     margin-right: 2vw;
   }
 
+  .container .tile.results h3, .container .tile.results h4, .container .tile.results h5 {
+    font-size: 3vw;
+  }
+
+  .container .tile.results img {
+    width: 4vw;
+    padding-right: 1vw;
+  }
+
   .container .tile.video {
     padding: 1.2vw 0;
     border: 1.4vw solid #fff0;
@@ -646,12 +702,12 @@ h1.hidden, h2.hidden {
     padding-bottom: .6vw;
   }
 
-  .container .tile.live, .container .tile.recorded {
+  .container .tile.results, .container .tile.live, .container .tile.recorded {
     padding: 3vw;
     border-width: 1.4vw;
   }
 
-  .container .tile.live:hover, .container .tile.recorded:hover {
+  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover {
     padding: 4.4vw;
     border-width: 0;
   }
@@ -794,6 +850,15 @@ h1.hidden, h2.hidden {
     font-size: 2.2vw;
     margin-right: 4vw;
   }
+  
+  .container .tile.results h3, .container .tile.results h4, .container .tile.results h5 {
+    font-size: 6vw;
+  }
+
+  .container .tile.results img {
+    width: 8vw;
+    padding-right: 2vw;
+  }
 
   .container .tile.video {
     padding: 2.4vw 0;
@@ -809,12 +874,12 @@ h1.hidden, h2.hidden {
     padding-bottom: 1.2vw;
   }
 
-  .container .tile.live, .container .tile.recorded {
+  .container .tile.results, .container .tile.live, .container .tile.recorded {
     padding: 6vw;
     border-width: 2.8vw;
   }
 
-  .container .tile.live:hover, .container .tile.recorded:hover {
+  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover {
     padding: 8.8vw;
     border-width: 0;
   }

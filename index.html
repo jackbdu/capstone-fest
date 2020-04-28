@@ -33,6 +33,11 @@
         </div>
       </div>
       <div class="container">
+        <div v-if="search || activeTag" class="tile results">
+          <h3>Showing Results For</h3>
+          <h4><span  v-if="search">"{{ search }}" </span><span v-if="activeTag"># {{ activeTag }}</span></h4>
+          <a v-on:click="removeFilters"><img src="assets/left-arrow-icon.svg" alt="Left Arrow Icon"><h5>Back to All Projects</h5></a>
+        </div>
         <div class="tile video" v-for="tile in filteredVideoTiles">
           <h3>{{ tile.title }}</h3>
           <video controls v-bind:poster="tile.image">
