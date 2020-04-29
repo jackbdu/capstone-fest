@@ -295,7 +295,7 @@ h1.hidden, h2.hidden {
   color: #DA4B39;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   transition: color .3s ease-out;
 }
 
