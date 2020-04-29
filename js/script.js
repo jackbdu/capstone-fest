@@ -66,6 +66,7 @@ var app = new Vue({
       window.scrollTo(0, window.innerWidth*.48);
     },
     onSearchEnter: function(el) {
+      window.scrollTo(0, window.innerWidth*.48);
       el.children[0].focus();
     },
     removeFilters: function() {
