@@ -32,6 +32,7 @@ class Tile {
     this.link = link;
     this.image = image;
     this.tags = tags;
+    this.status = "";
   }
 }
 
@@ -321,7 +322,7 @@ function loadData() {
         liveEventsData[i]['Time'] ? liveEventsData[i]['Time'] : '',
         liveEventsData[i]['Description'] ? liveEventsData[i]['Description'] : '',
         liveEventsData[i]['Link'] ? liveEventsData[i]['Link'] : '',
-        '',
+        liveEventsData[i]['Duration'] ? liveEventsData[i]['Duration'] : '',
         liveEventsData[i]['Tags'] ? liveEventsData[i]['Tags'].split(', ') : []));
     }
 
@@ -365,6 +366,12 @@ function loadData() {
     app.tilesFilteredByTag = tiles;
     window.scrollTo(0,0);
 
+    for (tile of app.tiles) {
+      if (tile.type === "live") {
+        updateCountdown(tile);
+      }
+    }
+
   }, function(response) {
     console.log('Error: ' + response.result.error.message);
   });
@@ -374,4 +381,33 @@ function removeData() {
   app.tiles = [];
   app.tilesFilteredByTag = [];
   app.majors = []
+}
+
+function updateCountdown(tile) {
+  var goal = new Date(tile.subtitle);
+  var now = new Date();
+  var timediff = goal - now;
+  var duration = tile.image;
+  var a = duration.split(':');
+  var durationInMillis = 0;
+  if (duration.length === 3) {
+     durationInMillis = 1000 * ((+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]));
+  }
+  if (timediff > 0) {
+    tile.status = "Starts in " + millis2time(goal-now);
+  } else if (-timediff > durationInMillis) {
+    tile.status = "Ended";
+  } else {
+    tile.status = "Live Now";
+  }
+  setTimeout(updateCountdown, 1000, tile);
+}
+
+function millis2time(timeInMillis) {
+  var pad = function(num, size) { return ('000' + num).slice(size * -1); };
+  var time = parseInt(timeInMillis);
+  var hours = Math.floor(time / 60 / 60 / 1000);
+  var minutes = Math.floor(time / 60 / 1000) % 60;
+  var seconds = Math.floor(time / 1000 % 60);
+  return hours + ':' + pad(minutes, 2) + ':' + pad(seconds, 2);
 }

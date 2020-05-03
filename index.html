@@ -49,7 +49,7 @@
           <h3>Live Event</h3>
           <h4>{{ tile.description }}</h4>
           <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>
-          <h6>Click to join in</h6>
+          <h6>{{ tile.status }}</h6>
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
           </div>
