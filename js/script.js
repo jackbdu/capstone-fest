@@ -390,7 +390,7 @@ function updateCountdown(tile) {
   var duration = tile.image;
   var a = duration.split(':');
   var durationInMillis = 0;
-  if (duration.length === 3) {
+  if (a.length === 3) {
      durationInMillis = 1000 * ((+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]));
   }
   if (timediff > 0) {
