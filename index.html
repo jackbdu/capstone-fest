@@ -40,7 +40,8 @@
         </div>
         <div v-bind:style="{ order: tile.order }" class="tile video" v-for="tile in filteredVideoTiles">
           <h3>{{ tile.title }}</h3>
-          <video controls v-bind:poster="tile.image">
+          <iframe v-if="tile.link.includes('vimeo') || tile.link.includes('youtube')" v-bind:src="tile.link" frameborder="0" allowfullscreen></iframe>
+          <video v-else controls v-bind:poster="tile.image">
             <source v-bind:src="tile.link" type="video/mp4">
           Your browser does not support the video tag.
           </video>
