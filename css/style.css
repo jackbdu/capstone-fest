@@ -229,7 +229,7 @@ h1.hidden, h2.hidden {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
+  justify-content: flex-start;
 }
 
 .hasBanner .container {
