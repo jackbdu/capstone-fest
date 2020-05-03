@@ -403,8 +403,10 @@ function updateCountdown(tile) {
     tile.status = "Starts in " + millis2time(goal-now);
   } else if (-timediff > durationInMillis) {
     tile.status = "Ended";
+    tile.order = (app.tiles.length+999).toString();
   } else {
     tile.status = "Live Now";
+    tile.order = '0';
   }
   setTimeout(updateCountdown, 1000, tile);
 }
