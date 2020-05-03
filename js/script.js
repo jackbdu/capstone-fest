@@ -24,8 +24,9 @@ function loop() {
 loop();
 
 class Tile {
-  constructor(type, title, subtitle, description, link, image, tags) {
+  constructor(type, order, title, subtitle, description, link, image, tags) {
     this.type = type;
+    this.order = order;
     this.title = title;
     this.subtitle = subtitle;
     this.description = description;
@@ -302,6 +303,7 @@ function loadData() {
     let projectsData = data[sheetNames[0]];
     for (let i = 0; i < projectsData.length; i++) {
       tiles.push(new Tile('project',
+        projectsData[i]['Order'] ? projectsData[i]['Order'] : "",
         projectsData[i]['Title'] ? projectsData[i]['Title'] : "",
         projectsData[i]['Preferred Name'] ? projectsData[i]['Preferred Name'] : (projectsData[i]['First Name'] ? projectsData[i]['First Name'] + " ": "")+(projectsData[i]['Last Name'] ? projectsData[i]['Last Name'] : ""),
         projectsData[i]['Description'] ? projectsData[i]['Description'] : "",
@@ -318,6 +320,7 @@ function loadData() {
     let liveEventsData = data[sheetNames[2]];
     for (let i = 0; i < liveEventsData.length; i++) {
       tiles.push(new Tile('live',
+        liveEventsData[i]['Order'] ? liveEventsData[i]['Order'] : '',
         liveEventsData[i]['Title'] ? liveEventsData[i]['Title'] : '',
         liveEventsData[i]['Time'] ? liveEventsData[i]['Time'] : '',
         liveEventsData[i]['Description'] ? liveEventsData[i]['Description'] : '',
@@ -330,6 +333,7 @@ function loadData() {
     let recordedEventsData = data[sheetNames[3]];
     for (let i = 0; i < recordedEventsData.length; i++) {
       tiles.push(new Tile('recorded',
+        recordedEventsData[i]['Order'] ? recordedEventsData[i]['Order'] : '',
         recordedEventsData[i]['Title'] ? recordedEventsData[i]['Title'] : '',
         recordedEventsData[i]['Time'] ? recordedEventsData[i]['Time'] : '',
         recordedEventsData[i]['Description'] ? recordedEventsData[i]['Description'] : '',
@@ -342,6 +346,7 @@ function loadData() {
     let videoData = data[sheetNames[1]];
     for (let i = 0; i < videoData.length; i++) {
       tiles.push(new Tile('video',
+        videoData[i]['Order'] ? videoData[i]['Order'] : '',
         videoData[i]['Title'] ? videoData[i]['Title'] : '',
         '',
         videoData[i]['Description'] ? videoData[i]['Description'] : '',
@@ -354,6 +359,7 @@ function loadData() {
     let bookData = data[sheetNames[4]];
     for (let i = 0; i < bookData.length; i++) {
       tiles.push(new Tile('book',
+        bookData[i]['Order'] ? bookData[i]['Order'] : '',
         bookData[i]['Title'] ? bookData[i]['Title'] : '',
         '',
         '',
