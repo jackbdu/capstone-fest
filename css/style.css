@@ -315,6 +315,7 @@ h1.hidden, h2.hidden {
   border: .7vw solid #fff0;
   color: #fff;
   align-items: center;
+  overflow: hidden;
 }
 
 .container .tile.video:hover {
