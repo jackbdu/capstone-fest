@@ -391,8 +391,9 @@ function removeData() {
 
 function updateCountdown(tile) {
   var goal = new Date(tile.subtitle);
+  var timezone = 4;
   var now = new Date();
-  var timediff = goal - now;
+  var timediff = goal - now - timezone * 60 * 60 * 1000 - now.getTimezoneOffset() * 60 * 1000;
   var duration = tile.image;
   var a = duration.split(':');
   var durationInMillis = 0;
@@ -400,7 +401,7 @@ function updateCountdown(tile) {
      durationInMillis = 1000 * ((+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]));
   }
   if (timediff > 0) {
-    tile.status = "Starts in " + millis2time(goal-now);
+    tile.status = "Starts in " + millis2time(timediff);
   } else if (-timediff > durationInMillis) {
     tile.status = "Ended";
     tile.order = (app.tiles.length+tile.order).toString();
