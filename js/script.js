@@ -188,7 +188,7 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+var SCOPES = "https://www.googleapis.com/auth/userinfo.profile";
 
 var authorizeButton = document.getElementById('login');
 var signoutButton = document.getElementById('logout');
@@ -265,123 +265,6 @@ function appendPre(message) {
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  */
-function loadData() {
-  const sheetNames = ["Projects", "Videos", "'Live Events'", "'Recorded Events'", "'Archival Book'"];
-
-  gapi.client.sheets.spreadsheets.values.batchGet({
-    spreadsheetId: '1x0_wAVJ86WC1WAQOYweKGUDwWJuMe9q0P7zHRvbpVRA',
-    ranges: sheetNames,
-  }).then(function(response) {
-    var data = new Object();
-    for (var k = 0; k < response.result.valueRanges.length; k++) {
-      var range = response.result.valueRanges[k];
-      if (range.values.length > 0) {
-        let columnNames = [];
-        var sheetData = [];
-        for (let i = 0; i < range.values[0].length; i++) {
-          columnNames.push(range.values[0][i]);
-        }
-        for (let i = 1; i < range.values.length; i++) {
-          let rowData = new Object();
-          for (let j = 0; j < range.values[i].length; j++) {
-            rowData[columnNames[j]] = range.values[i][j];
-          }
-          sheetData.push(rowData);
-        }
-        for (sheetName of sheetNames) {
-          if (range.range.includes(sheetName)) {
-              data[sheetName] = sheetData;
-          }
-        }
-      }
-    }
-
-    let tiles = [];
-
-    // loading projects
-    let majors = [];
-    let projectsData = data[sheetNames[0]];
-    for (let i = 0; i < projectsData.length; i++) {
-      tiles.push(new Tile('project',
-        projectsData[i]['Order'] ? projectsData[i]['Order'] : "",
-        projectsData[i]['Title'] ? projectsData[i]['Title'] : "",
-        projectsData[i]['Preferred Name'] ? projectsData[i]['Preferred Name'] : (projectsData[i]['First Name'] ? projectsData[i]['First Name'] + " ": "")+(projectsData[i]['Last Name'] ? projectsData[i]['Last Name'] : ""),
-        projectsData[i]['Description'] ? projectsData[i]['Description'] : "",
-        projectsData[i]['Link'] ? projectsData[i]['Link'] : "",
-        projectsData[i]['Image Link'] ? projectsData[i]['Image Link'] : "",
-        projectsData[i]['Tags'] ? projectsData[i]['Tags'].split(', ') : []));
-      if (!majors.some(major => major.name === projectsData[i]['Major'])) {
-        majors.push({ name: projectsData[i]['Major'] });
-      }
-    }
-    app.majors = majors;
-
-    // loading live events
-    let liveEventsData = data[sheetNames[2]];
-    for (let i = 0; i < liveEventsData.length; i++) {
-      tiles.push(new Tile('live',
-        liveEventsData[i]['Order'] ? liveEventsData[i]['Order'] : '',
-        liveEventsData[i]['Title'] ? liveEventsData[i]['Title'] : '',
-        liveEventsData[i]['Time'] ? liveEventsData[i]['Time'] : '',
-        liveEventsData[i]['Description'] ? liveEventsData[i]['Description'] : '',
-        liveEventsData[i]['Link'] ? liveEventsData[i]['Link'] : '',
-        liveEventsData[i]['Duration'] ? liveEventsData[i]['Duration'] : '',
-        liveEventsData[i]['Tags'] ? liveEventsData[i]['Tags'].split(', ') : []));
-    }
-
-    // loading recorded events
-    let recordedEventsData = data[sheetNames[3]];
-    for (let i = 0; i < recordedEventsData.length; i++) {
-      tiles.push(new Tile('recorded',
-        recordedEventsData[i]['Order'] ? recordedEventsData[i]['Order'] : '',
-        recordedEventsData[i]['Title'] ? recordedEventsData[i]['Title'] : '',
-        recordedEventsData[i]['Time'] ? recordedEventsData[i]['Time'] : '',
-        recordedEventsData[i]['Description'] ? recordedEventsData[i]['Description'] : '',
-        recordedEventsData[i]['Link'] ? recordedEventsData[i]['Link'] : '',
-        '',
-        recordedEventsData[i]['Tags'] ? recordedEventsData[i]['Tags'].split(', ') : []));
-    }
-
-    // loading videos
-    let videoData = data[sheetNames[1]];
-    for (let i = 0; i < videoData.length; i++) {
-      tiles.push(new Tile('video',
-        videoData[i]['Order'] ? videoData[i]['Order'] : '',
-        videoData[i]['Title'] ? videoData[i]['Title'] : '',
-        '',
-        videoData[i]['Description'] ? videoData[i]['Description'] : '',
-        videoData[i]['Video Link'] ? videoData[i]['Video Link'] : '',
-        videoData[i]['Cover Link'] ? videoData[i]['Cover Link'] : '',
-        videoData[i]['Tags'] ? videoData[i]['Tags'].split(', ') : []));
-    }
-
-    // loading archival book
-    let bookData = data[sheetNames[4]];
-    for (let i = 0; i < bookData.length; i++) {
-      tiles.push(new Tile('book',
-        bookData[i]['Order'] ? bookData[i]['Order'] : '',
-        bookData[i]['Title'] ? bookData[i]['Title'] : '',
-        '',
-        '',
-        bookData[i]['Book Link'] ? bookData[i]['Book Link'] : '',
-        bookData[i]['Image Link'] ? bookData[i]['Image Link'] : '',
-        bookData[i]['Tags'] ? bookData[i]['Tags'].split(', ') : []));
-    }
-
-    app.tiles = tiles;
-    app.tilesFilteredByTag = tiles;
-    window.scrollTo(0,0);
-
-    for (tile of app.tiles) {
-      if (tile.type === "live") {
-        updateCountdown(tile);
-      }
-    }
-
-  }, function(response) {
-    console.log('Error: ' + response.result.error.message);
-  });
-}
 
 function removeData() {
   app.tiles = [];
@@ -419,4 +302,95 @@ function millis2time(timeInMillis) {
   var minutes = Math.floor(time / 60 / 1000) % 60;
   var seconds = Math.floor(time / 1000 % 60);
   return hours + ':' + pad(minutes, 2) + ':' + pad(seconds, 2);
+}
+
+function loadData() {
+  Tabletop.init( {
+    key: 'https://docs.google.com/spreadsheets/d/1x0_wAVJ86WC1WAQOYweKGUDwWJuMe9q0P7zHRvbpVRA/edit?usp=sharing',
+    simpleSheet: false }
+  ).then(function(data, tabletop) {
+
+    const sheetNames = ["Projects", "Videos", "Live Events", "Recorded Events", "Archival Book"];
+    let tiles = [];
+
+    // loading projects
+    let majors = [];
+    let projectsData = data[sheetNames[0]].elements;
+    for (let i = 0; i < projectsData.length; i++) {
+      tiles.push(new Tile('project',
+        projectsData[i]['Order'] ? projectsData[i]['Order'] : "",
+        projectsData[i]['Title'] ? projectsData[i]['Title'] : "",
+        projectsData[i]['Preferred Name'] ? projectsData[i]['Preferred Name'] : (projectsData[i]['First Name'] ? projectsData[i]['First Name'] + " ": "")+(projectsData[i]['Last Name'] ? projectsData[i]['Last Name'] : ""),
+        projectsData[i]['Description'] ? projectsData[i]['Description'] : "",
+        projectsData[i]['Link'] ? projectsData[i]['Link'] : "",
+        projectsData[i]['Image Link'] ? projectsData[i]['Image Link'] : "",
+        projectsData[i]['Tags'] ? projectsData[i]['Tags'].split(', ') : []));
+      if (!majors.some(major => major.name === projectsData[i]['Major'])) {
+        majors.push({ name: projectsData[i]['Major'] });
+      }
+    }
+    app.majors = majors;
+
+    // loading live events
+    let liveEventsData = data[sheetNames[2]].elements;
+    for (let i = 0; i < liveEventsData.length; i++) {
+      tiles.push(new Tile('live',
+        liveEventsData[i]['Order'] ? liveEventsData[i]['Order'] : '',
+        liveEventsData[i]['Title'] ? liveEventsData[i]['Title'] : '',
+        liveEventsData[i]['Time'] ? liveEventsData[i]['Time'] : '',
+        liveEventsData[i]['Description'] ? liveEventsData[i]['Description'] : '',
+        liveEventsData[i]['Link'] ? liveEventsData[i]['Link'] : '',
+        liveEventsData[i]['Duration'] ? liveEventsData[i]['Duration'] : '',
+        liveEventsData[i]['Tags'] ? liveEventsData[i]['Tags'].split(', ') : []));
+    }
+
+    // loading recorded events
+    let recordedEventsData = data[sheetNames[3]].elements;
+    for (let i = 0; i < recordedEventsData.length; i++) {
+      tiles.push(new Tile('recorded',
+        recordedEventsData[i]['Order'] ? recordedEventsData[i]['Order'] : '',
+        recordedEventsData[i]['Title'] ? recordedEventsData[i]['Title'] : '',
+        recordedEventsData[i]['Time'] ? recordedEventsData[i]['Time'] : '',
+        recordedEventsData[i]['Description'] ? recordedEventsData[i]['Description'] : '',
+        recordedEventsData[i]['Link'] ? recordedEventsData[i]['Link'] : '',
+        '',
+        recordedEventsData[i]['Tags'] ? recordedEventsData[i]['Tags'].split(', ') : []));
+    }
+
+    // loading videos
+    let videoData = data[sheetNames[1]].elements;
+    for (let i = 0; i < videoData.length; i++) {
+      tiles.push(new Tile('video',
+        videoData[i]['Order'] ? videoData[i]['Order'] : '',
+        videoData[i]['Title'] ? videoData[i]['Title'] : '',
+        '',
+        videoData[i]['Description'] ? videoData[i]['Description'] : '',
+        videoData[i]['Video Link'] ? videoData[i]['Video Link'] : '',
+        videoData[i]['Cover Link'] ? videoData[i]['Cover Link'] : '',
+        videoData[i]['Tags'] ? videoData[i]['Tags'].split(', ') : []));
+    }
+
+    // loading archival book
+    let bookData = data[sheetNames[4]].elements;
+    for (let i = 0; i < bookData.length; i++) {
+      tiles.push(new Tile('book',
+        bookData[i]['Order'] ? bookData[i]['Order'] : '',
+        bookData[i]['Title'] ? bookData[i]['Title'] : '',
+        '',
+        '',
+        bookData[i]['Book Link'] ? bookData[i]['Book Link'] : '',
+        bookData[i]['Image Link'] ? bookData[i]['Image Link'] : '',
+        bookData[i]['Tags'] ? bookData[i]['Tags'].split(', ') : []));
+    }
+
+    app.tiles = tiles;
+    app.tilesFilteredByTag = tiles;
+    window.scrollTo(0,0);
+
+    for (tile of app.tiles) {
+      if (tile.type === "live") {
+        updateCountdown(tile);
+      }
+    }
+  })
 }
