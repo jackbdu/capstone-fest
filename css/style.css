@@ -257,6 +257,7 @@ h1.hidden, h2.hidden {
 
 .container .tile .tags {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .container .tile .tags a {
