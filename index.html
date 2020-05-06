@@ -53,7 +53,36 @@
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
           </div>
-          <img src="assets/clock-icon.svg" alt="Clock Icon">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" xml:space="preserve">
+            <path d="M64,0C28.65,0,0,28.65,0,64s28.65,64,64,64c35.35,0,64-28.65,64-64S99.35,0,64,0z M63.77,117.23
+            c-29.27,0-53-23.73-53-53c0-29.27,23.73-53,53-53s53,23.73,53,53C116.77,93.5,93.04,117.23,63.77,117.23z" fill="#9CC5CA"/>
+            <rect x="58.5" y="35.5" width="11" height="34" fill="#9CC5CA">
+              <animateTransform v-if="tile.status==='Live Now'"
+                attributeName="transform"
+                attributeType="XML"
+                type="rotate"
+                dur="24s"
+                begin="0s"
+                values="0 64 64; 180 64 64; 360 64 64"
+                keyTimes="0; 0.5; 1"
+                repeatCount="indefinite"
+                fill="remove"
+              />
+            </rect>
+            <rect transform="rotate(-270 64 64)" x="58.5" y="31.5" width="11" height="38" fill="#9CC5CA">
+              <animateTransform v-if="tile.status==='Live Now'"
+                attributeName="transform"
+                attributeType="XML"
+                type="rotate"
+                dur="2s"
+                begin="0s"
+                values="-270 64 64; -90 64 64; 90 64 64"
+                keyTimes="0; 0.5; 1"
+                repeatCount="indefinite"
+                fill="remove"
+              />
+            </rect>
+        </svg>
         </div>
         <div v-bind:style="{ order: tile.order }" class="tile recorded" v-for="tile in filteredRecordedTiles">
           <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>

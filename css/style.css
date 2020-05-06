@@ -396,7 +396,7 @@ h1.hidden, h2.hidden {
   flex: 1;
 }
 
-.container .tile.live img {
+.container .tile.live svg {
   position: absolute;
   width: 3vw;
   align-self: flex-end;
@@ -641,7 +641,7 @@ h1.hidden, h2.hidden {
     padding-bottom: .8vw;
   }
 
-  .container .tile.live img {
+  .container .tile.live svg {
     width: 4vw;
   }
 
@@ -778,7 +778,7 @@ h1.hidden, h2.hidden {
     padding-bottom: 1.2vw;
   }
 
-  .container .tile.live img {
+  .container .tile.live svg {
     width: 6vw;
   }
 
@@ -984,7 +984,7 @@ h1.hidden, h2.hidden {
     padding-bottom: 2.4vw;
   }
 
-  .container .tile.live img {
+  .container .tile.live svg {
     width: 12vw;
   }
 
