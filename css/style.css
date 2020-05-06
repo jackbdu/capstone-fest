@@ -282,6 +282,7 @@ h1.hidden, h2.hidden {
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
+  order: -999;
 }
 
 .container .tile.results h3, .container .tile.results h4, .container .tile.results h5 {
