@@ -290,7 +290,7 @@ function updateCountdown(tile) {
     tile.order = (app.tiles.length+tile.order).toString();
   } else {
     tile.status = "Live Now";
-    tile.order = '0';
+    tile.order = '-1';
   }
   setTimeout(updateCountdown, 1000, tile);
 }
