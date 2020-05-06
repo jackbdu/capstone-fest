@@ -342,7 +342,7 @@ h1.hidden, h2.hidden {
   outline: none;
 }
 
-.container .tile.results, .container .tile.live, .container .tile.recorded {
+.container .tile.results, .container .tile.live, .container .tile.recorded, .container .tile.book {
   padding: 1.5vw;
   border: .7vw solid #fff0;
 }
@@ -352,7 +352,7 @@ h1.hidden, h2.hidden {
   color: #fff;
 }
 
-.container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover {
+.container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover, .container .tile.book:hover {
   padding: 2.2vw;
   border: 0 solid #fff0;
 }
@@ -404,23 +404,33 @@ h1.hidden, h2.hidden {
 }
 
 .container .tile.book {
-  flex: 0 0 50%;
-  flex-direction: row;
   background-color: #fff;
   border: .7vw solid #fff0;
 }
 
-.container .tile.book:hover {
-  border: 0 solid #fff0;
+.container .tile.book.hasimage {
+  padding: 0;
+  flex: 0 0 50%;
+  flex-direction: row;
 }
 
-.container .tile.book img {
+.container .tile.book.hasimage:hover {
+  border: 0 solid #fff0;
+  padding: 0;
+}
+
+.container .tile.book.hasimage img {
   object-fit: cover;
   width: 50%;
   height: 100%;
 }
 
 .container .tile.book div {
+  width: 100%;
+  height: 100%;
+}
+
+.container .tile.book.hasimage div {
   width: 50%;
   height: 100%;
   position: relative;
@@ -428,6 +438,10 @@ h1.hidden, h2.hidden {
 
 .container .tile.book h5 {
   color: #DA4B39;
+  padding-top: 2.2vw;
+}
+
+.container .tile.book.hasimage h5 {
   position: absolute;
   box-sizing: border-box;
   padding: 2.2vw;
@@ -609,12 +623,12 @@ h1.hidden, h2.hidden {
     padding-bottom: .4vw;
   }
 
-  .container .tile.results, .container .tile.live, .container .tile.recorded {
+  .container .tile.results, .container .tile.live, .container .tile.recorded, .container .tile.book {
     padding: 2vw;
     border-width: 1vw;
   }
 
-  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover {
+  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover, .container .tile.book:hover {
     padding: 3vw;
     border-width: 0;
   }
@@ -646,13 +660,20 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.book {
-    flex: 0 0 66.6666666%;
     border: 1vw solid #fff0;
   }
 
+  .container .tile.book.hasimage {
+    flex: 0 0 66.6666666%;
+  }
+
   .container .tile.book h5 {
-    padding: 3vw;
+    padding-top: 3vw;
+  }
+
+  .container .tile.book.hasimage h5 {
     transform: translate(0, -8vw);
+    padding: 3vw;
   }
 
   .container .tile.project {
@@ -746,12 +767,12 @@ h1.hidden, h2.hidden {
     padding-bottom: .6vw;
   }
 
-  .container .tile.results, .container .tile.live, .container .tile.recorded {
+  .container .tile.results, .container .tile.live, .container .tile.recorded, .container .tile.book {
     padding: 3vw;
     border-width: 1.4vw;
   }
 
-  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover {
+  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover, .container .tile.book:hover {
     padding: 4.4vw;
     border-width: 0;
   }
@@ -783,11 +804,18 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.book {
-    flex: 0 0 100%;
     border: 1.4vw solid #fff0;
   }
 
+  .container .tile.book.hasimage {
+    flex: 0 0 100%;
+  }
+
   .container .tile.book h5 {
+    padding-top: 4.4vw;
+  }
+  
+  .container .tile.book.hasimage h5 {
     padding: 4.4vw;
     transform: translate(0, -12vw);
   }
@@ -952,12 +980,12 @@ h1.hidden, h2.hidden {
     padding-bottom: 1.2vw;
   }
 
-  .container .tile.results, .container .tile.live, .container .tile.recorded {
+  .container .tile.results, .container .tile.live, .container .tile.recorded, .container .tile.book {
     padding: 6vw;
     border-width: 2.8vw;
   }
 
-  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover {
+  .container .tile.results:hover, .container .tile.live:hover, .container .tile.recorded:hover, .container .tile.book:hover {
     padding: 8.8vw;
     border-width: 0;
   }
@@ -989,23 +1017,30 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.book {
-    box-sizing: border-box;
     border: 2.8vw solid #fff0;
+  }
+
+  .container .tile.book.hasimage {
+    box-sizing: border-box;
     flex-direction: column;
     height: calc(400vw/3);
   }
 
-  .container .tile.book img {
+  .container .tile.book.hasimage img {
     width: 100%;
     height: 50%;
   }
 
-  .container .tile.book div {
+  .container .tile.book.hasimage div {
     width: 100%;
     height: 50%;
   }
 
   .container .tile.book h5 {
+    padding-top: 6vw;
+  }
+
+  .container .tile.book.hasimage h5 {
     padding: 6vw;
     top: calc(100vw/3);
     left: 50%;
