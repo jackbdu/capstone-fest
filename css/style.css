@@ -326,7 +326,7 @@ h1.hidden, h2.hidden {
 }
 
 .container .tile.video h3 {
-  font-size: 1.5vw;
+  font-size: 1.4vw;
   text-transform: uppercase;
   padding-bottom: .3vw;
 }
@@ -605,7 +605,7 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.video h3 {
-    font-size: 2vw;
+    font-size: 1.85vw;
     padding-bottom: .4vw;
   }
 
@@ -742,7 +742,7 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.video h3 {
-    font-size: 3vw;
+    font-size: 2.8vw;
     padding-bottom: .6vw;
   }
 
@@ -948,7 +948,7 @@ h1.hidden, h2.hidden {
   }
 
   .container .tile.video h3 {
-    font-size: 6vw;
+    font-size: 5.6vw;
     padding-bottom: 1.2vw;
   }
 
