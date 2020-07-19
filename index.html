@@ -1,22 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>A&H Capstone Fest 2020</title>
+    <title>Capstone Fest - Demo</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Montserrat:wght@500;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <meta charset="utf-8">
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-59972581-4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-59972581-4');
-    </script>
     <script src="js/vue.min.js"></script>
   </head>
   <body>
@@ -52,12 +42,12 @@
           <iframe v-if="tile.link.includes('vimeo') || tile.link.includes('youtube')" v-bind:src="tile.link" frameborder="0" allowfullscreen></iframe>
           <video v-else controls v-bind:poster="tile.image">
             <source v-bind:src="tile.link" type="video/mp4">
-          Your browser does not support the video tag.
+            Your browser does not support the video tag.
           </video>
         </div>
         <div v-bind:style="{ order: tile.order }" class="tile live" v-for="tile in filteredLiveTiles">
           <h4>{{ tile.description }}</h4>
-          <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>
+          <a v-bind:href="tile.link"><h5>{{ tile.title }}</h5></a>
           <h6>{{ tile.status }}</h6>
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
@@ -94,7 +84,7 @@
         </svg>
         </div>
         <div v-bind:style="{ order: tile.order }" class="tile recorded" v-for="tile in filteredRecordedTiles">
-          <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>
+          <a v-bind:href="tile.link"><h5>{{ tile.title }}</h5></a>
           <h6>{{ tile.description }}</h6>
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
@@ -103,11 +93,11 @@
         <div v-bind:style="{ order: tile.order }" class="tile book" v-bind:class="{ hasimage: tile.image }" v-for="tile in filteredBookTiles">
           <img v-if="tile.image" v-bind:src="tile.image" alt="Capstone Archival Book">
           <div>
-            <a v-bind:href="tile.link" target="_blank"><h5>{{ tile.title }}</h5></a>
+            <a v-bind:href="tile.link"><h5>{{ tile.title }}</h5></a>
           </div>
         </div>
         <div v-bind:style="{ order: tile.order, backgroundImage: 'linear-gradient(to right, #000c, #000c, #0000), url('+tile.image+')'}" class="tile project" v-for="tile in filteredProjectTiles">
-          <a v-if="tile.link" v-bind:href="tile.link" target="_blank"><h3>{{ tile.title }}</h3></a>
+          <a v-if="tile.link" v-bind:href="tile.link"><h3>{{ tile.title }}</h3></a>
           <a v-else><h3>{{ tile.title }}</h3></a>
           <h4>{{ tile.subtitle }}</h4>
           <p>{{ tile.description }}</p>
@@ -126,20 +116,11 @@
           </ul>
         </div>
         <div class="notice">
-          <h3>Content Privacy</h3>
-          <p>This site and its content is private to the New York University community. Do not share screenshots, text, or other content from this page or linked pages without express permission from the authors.</p>
-          <button v-if="isSignedIn === false" onclick="handleAuthClick();">Log In</button>
-          <button v-if="isSignedIn === null">Checking...</button>
-          <button v-if="isSignedIn === true" onclick="handleSignoutClick();">Log Out</button>
-          <p>© New York University Abu Dhabi</p>
+          <h3>Notice</h3>
+          <p>This site is designed and produced by <a href="https://www.jackbdu.com/" target="_blank">Jack B. Du</a> and <a href="https://www.erinmeekhof.com/" target="_blank">Erin Collins</a> for Arts and Humanities Capstone Festival 2020 at <a href="https://nyuad.nyu.edu/" target="_blank">NYU Abu Dhabi</a>. The original site is not publicly available. This site and its content is hosted for <span style="text-transform: uppercase;">demonstration purposes only</span>, hence the external links are disabled.</p>
         </div>
       </div>
     </div>
-    <script src="js/tabletop.min.js"></script>
     <script src="js/script.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
   </body>
 </html>

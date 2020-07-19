@@ -529,6 +529,17 @@ h1.hidden, h2.hidden {
   font-size: 1.2vw;
 }
 
+.footer p a {
+  color: #DD4C37;
+  text-decoration: underline;
+  transition: color .3s ease-out;
+}
+
+.footer p a:hover {
+  cursor: pointer;
+  color: #FC6D5B;
+}
+
 .footer li {
   list-style-type: none;
   padding-right: 3vw;
