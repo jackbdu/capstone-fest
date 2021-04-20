@@ -1,3 +1,23 @@
+// get parameter by name
+// https://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+}
+
+// hiding content before live
+if (findGetParameter('preview') != 'true' && new Date().getTime() < 1619537400000) {
+  document.querySelector(".search").style.display = 'none';
+  document.querySelector(".container").style.display = 'none';
+  document.querySelector(".footer").style.display = 'none';
+}
+
 // scrolling animation
 var scroll = window.requestAnimationFrame ||
       function(callback){ window.setTimeout(callback, 1000/60)};
