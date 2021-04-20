@@ -316,6 +316,8 @@ function parseData(data) {
   }
 }
 
+// getting sample data
+/*
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -325,3 +327,52 @@ xhttp.onreadystatechange = function() {
 
 xhttp.open("GET", "sample-data/sample-database.json", true);
 xhttp.send();
+
+*/
+
+// getting data from php
+function reqListener () {
+  console.log(this.responseText);
+}
+
+var oReq = new XMLHttpRequest(); // New request object
+oReq.onload = function() {
+  // This is where you handle what to do with the response.
+  // The actual data is found on this.responseText
+  //parseData(this.responseText); // Will alert: 42
+  const sheetNames = ["Projects", "Videos", "Live Events", "Recorded Events", "Archival Book"];
+  var response = JSON.parse(this.responseText);
+
+  var data = new Object();
+  for (var k = 0; k < response.valueRanges.length; k++) {
+    var range = response.valueRanges[k];
+    if (range.values.length > 0) {
+      let columnNames = [];
+      var sheetData = [];
+      for (let i = 0; i < range.values[0].length; i++) {
+        columnNames.push(range.values[0][i]);
+      }
+      for (let i = 1; i < range.values.length; i++) {
+        let rowData = new Object();
+        for (let j = 0; j < range.values[i].length; j++) {
+          rowData[columnNames[j]] = range.values[i][j];
+        }
+        sheetData.push(rowData);
+      }
+      for (sheetName of sheetNames) {
+        if (range.range.includes(sheetName)) {
+            data[sheetName] = sheetData;
+        }
+      }
+
+    }
+  }
+
+  parseData(data);
+
+};
+oReq.open("get", "get-data.php", true);
+//                               ^ Don't block the rest of the execution.
+//                                 Don't wait until the request finishes to
+//                                 continue.
+oReq.send();
