@@ -377,7 +377,7 @@ h1.hidden, h2.hidden {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   padding-top: .5vw;
-  font-size: 1.7vw;
+  font-size: 1.6vw;
   color: #9CC5CA;
   flex: 1;
   transition: color .3s ease-out;
@@ -802,7 +802,7 @@ h1.hidden, h2.hidden {
 
   .container .tile.live h5, .container .tile.recorded h5, .container .tile.book h5 {
     padding-top: 1.2vw;
-    font-size: 3.3vw;
+    font-size: 3.2vw;
   }
 
   .container .tile.live h6, .container .tile.recorded h6 {
@@ -1015,7 +1015,7 @@ h1.hidden, h2.hidden {
 
   .container .tile.live h5, .container .tile.recorded h5, .container .tile.book h5 {
     padding-top: 2.4vw;
-    font-size: 6.6vw;
+    font-size: 6.5vw;
   }
 
   .container .tile.live h6, .container .tile.recorded h6 {
