@@ -99,8 +99,8 @@
         <div v-bind:style="{ order: tile.order, backgroundImage: 'linear-gradient(to right, #000c, #000c, #0000), url('+tile.image+')'}" class="tile project" v-for="tile in filteredProjectTiles">
           <a v-if="tile.link" v-bind:href="tile.link" target="_blank"><h3 v-html="tile.title"></h3></a>
           <a v-else><h3 v-html="tile.title"></h3></a>
-          <h4 v-html="tile.subtitle"></h4>
-          <p>{{ tile.description }}</p>
+          <h4>{{ tile.subtitle }}</h4>
+          <p v-html="tile.description"></p>
           <div class="tags" v-if="tile.tags">
             <a v-for="tag in tile.tags" v-on:click="filterTilesByTag(tag)"># {{ tag }}</a>
           </div>
