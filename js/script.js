@@ -12,7 +12,7 @@ function findGetParameter(parameterName) {
 }
 
 // hiding content before live
-if (findGetParameter('preview') != 'true' && new Date().getTime() < 1619537400000) {
+if (findGetParameter('preview') != 'true' && new Date().getTime() < 1619526600000) {
   document.querySelector(".search").style.display = 'none';
   document.querySelector(".container").style.display = 'none';
   document.querySelector(".footer").style.display = 'none';
